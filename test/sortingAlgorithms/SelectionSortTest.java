@@ -14,14 +14,16 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package sortingAlgorithms.quicksort;
+package sortingAlgorithms;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
+import static org.junit.Assert.assertArrayEquals;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -30,7 +32,7 @@ import org.junit.Test;
  *
  * @author Matthias Fussenegger
  */
-public class QuicksortTest {
+public class SelectionSortTest {
 
     /**
      * The list to be tested
@@ -38,7 +40,7 @@ public class QuicksortTest {
     private final List _list;
 
     @SuppressWarnings("unchecked")
-    public QuicksortTest() {
+    public SelectionSortTest() {
         _list = new LinkedList<>();
         _list.add(0);
         _list.add(1);
@@ -69,30 +71,38 @@ public class QuicksortTest {
     }
 
     /**
-     * Test of sort method, of class Quicksort.
+     * Test of sort method, of class SelectionSort.
      */
     @Test
     public void testSort_List() {
-        System.out.println("sort - Quicksort");
-        Quicksort instance = new Quicksort();
+        System.out.println("sort - SelectionSort");
+        SelectionSort instance = new SelectionSort();
         Collections.shuffle(_list);
-        instance.sort(_list);
-        System.out.println(_list.toString());
+        Object[] values = _list.toArray();
+        instance.sort(values);
+        Object[] sortedValues = _list.toArray();
+        Arrays.sort(sortedValues);
+        assertArrayEquals(values, sortedValues);
     }
 
     /**
-     * Test of sort method, of class Quicksort.
+     * Test of sort method, of class SelectionSort.
      */
     @Test
+    @SuppressWarnings("unchecked")
     public void testSort_List_Comparator() {
-        System.out.println("sort using comparator - Quicksort");
-        Quicksort instance = new Quicksort();
+        System.out.println("sort using comparator - SelectionSort");
+        SelectionSort instance = new SelectionSort();
         Collections.shuffle(_list);
-        instance.sort(_list, (Comparator) (Object o1, Object o2) -> {
+        Object[] values = _list.toArray();
+        Comparator c = (Comparator) (Object o1, Object o2) -> {
             Integer v1 = (Integer) o1;
             Integer v2 = (Integer) o2;
             return v2.compareTo(v1);
-        });
-        System.out.println(_list.toString());
+        };
+        instance.sort(values, c);
+        Object[] sortedValues = _list.toArray();
+        Arrays.sort(sortedValues, c);
+        assertArrayEquals(values, sortedValues);
     }
 }

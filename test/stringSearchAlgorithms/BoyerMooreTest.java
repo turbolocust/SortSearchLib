@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package stringSearchAlgorithms.boyerMoore;
+package stringSearchAlgorithms;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -28,22 +28,22 @@ import static org.junit.Assert.*;
  * @author Matthias Fussenegger
  */
 public class BoyerMooreTest {
-    
+
     public BoyerMooreTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
     }
-    
+
     @After
     public void tearDown() {
     }
@@ -69,5 +69,5 @@ public class BoyerMooreTest {
         int expResult = 18;
         int result = instance.indexOf(stack, needle);
         assertEquals(expResult, result);
-    }   
+    }
 }

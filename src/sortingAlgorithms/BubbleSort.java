@@ -14,48 +14,41 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package sortingAlgorithms.insertionSort;
+package sortingAlgorithms;
 
-import Interfaces.SortingAlgorithm;
+import interfaces.SortingAlgorithm;
 import java.util.Comparator;
-import java.util.List;
 
 /**
  *
  * @author Matthias Fussenegger
  * @param <T> Generic type parameter
  */
-public class InsertionSort<T> implements SortingAlgorithm {
+public class BubbleSort<T> implements SortingAlgorithm {
 
     @Override
     @SuppressWarnings("unchecked")
-    public void sort(List list) {
-        if (list.size() > 1) {
-            for (int i = 1; i < list.size(); ++i) {
-                T temp = (T) list.get(i);
-                int j = i;
-                while (j > 0 && ((Comparable<? super T>) list.get(j - 1)).compareTo(temp) > 0) {
-                    list.set(j, list.get(j - 1));
-                    --j;
+    public void sort(Object[] values) {
+        for (int n = values.length; n > 1; --n) {
+            for (int j = 0; j < n - 1; ++j) {
+                if (((Comparable<? super T>) values[j]).compareTo((T) values[j + 1]) > 0) {
+                    T temp = (T) values[j];
+                    values[j] = values[j + 1];
+                    values[j + 1] = temp;
                 }
-                list.set(j, temp);
             }
         }
     }
 
     @Override
     @SuppressWarnings("unchecked")
-    public void sort(List list, Comparator c) {
-        if (c != null) {
-            if (list.size() > 1) {
-                for (int i = 1; i < list.size(); ++i) {
-                    T temp = (T) list.get(i);
-                    int j = i;
-                    while (j > 0 && c.compare(list.get(j - 1), temp) > 0) {
-                        list.set(j, list.get(j - 1));
-                        --j;
-                    }
-                    list.set(j, temp);
+    public void sort(Object[] values, Comparator c) {
+        for (int n = values.length; n > 1; --n) {
+            for (int j = 0; j < n - 1; ++j) {
+                if (c.compare(values[j], values[j + 1]) > 0) {
+                    T temp = (T) values[j];
+                    values[j] = values[j + 1];
+                    values[j + 1] = temp;
                 }
             }
         }
