@@ -14,30 +14,20 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package Interfaces;
-
-import java.util.Comparator;
-import java.util.List;
+package algo_interfaces;
 
 /**
  *
  * @author Matthias Fussenegger
- * @param <T> Generic type parameter
  */
-public interface SortingAlgorithm<T> {
+public interface StringSearchAlgorithm {
 
     /**
-     * Sorts the given list using the the natural ordering of the list elements
+     * Finds the first occurrence of the pattern in the {@code String}
      *
-     * @param list A list of any type
+     * @param stack The text to be searched for pattern
+     * @param pattern The pattern to be found in text
+     * @return The position of the first occurrence in the text
      */
-    void sort(List<T> list);
-
-    /**
-     * Sorts the given list using the specified comparator
-     *
-     * @param list A list of any type
-     * @param c The comparator used for sorting the list elements
-     */
-    void sort(List<T> list, Comparator<? super T> c);
+    int indexOf(char[] stack, String pattern);
 }

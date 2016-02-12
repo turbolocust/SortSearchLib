@@ -16,6 +16,7 @@
  */
 package sortingAlgorithms;
 
+import sorting_algorithms.SelectionSort;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;

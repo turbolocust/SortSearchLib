@@ -14,9 +14,9 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package sortingAlgorithms;
+package sorting_algorithms;
 
-import interfaces.SortingAlgorithm;
+import algo_interfaces.SortingAlgorithm;
 import java.util.Comparator;
 
 /**
@@ -24,37 +24,39 @@ import java.util.Comparator;
  * @author Matthias Fussenegger
  * @param <T> Generic type parameter
  */
-public class SelectionSort<T> implements SortingAlgorithm {
+public class InsertionSort<T> implements SortingAlgorithm {
 
     @Override
     @SuppressWarnings("unchecked")
     public void sort(Object[] values) {
-        for (int i = values.length - 1; i > 0; --i) {
-            int min = 0;
-            for (int j = 0; j < i + 1; ++j) {
-                if (((Comparable<? super T>) values[j]).compareTo((T) values[min]) > 0) {
-                    min = j;
+        if (values.length > 1) {
+            for (int i = 1; i < values.length; ++i) {
+                T temp = (T) values[i];
+                int j = i;
+                while (j > 0 && ((Comparable<? super T>) values[j - 1]).compareTo(temp) > 0) {
+                    values[j] = values[j - 1];
+                    --j;
                 }
+                values[j] = temp;
             }
-            T temp = (T) values[min];
-            values[min] = values[i];
-            values[i] = temp;
         }
     }
 
     @Override
     @SuppressWarnings("unchecked")
     public void sort(Object[] values, Comparator c) {
-        for (int i = values.length - 1; i > 0; --i) {
-            int min = 0;
-            for (int j = 0; j < i + 1; ++j) {
-                if (c.compare(values[j], values[min]) > 0) {
-                    min = j;
+        if (c != null) {
+            if (values.length > 1) {
+                for (int i = 1; i < values.length; ++i) {
+                    T temp = (T) values[i];
+                    int j = i;
+                    while (j > 0 && c.compare(values[j - 1], temp) > 0) {
+                        values[j] = values[j - 1];
+                        --j;
+                    }
+                    values[j] = temp;
                 }
             }
-            T temp = (T) values[min];
-            values[min] = values[i];
-            values[i] = temp;
         }
     }
 }

@@ -16,6 +16,7 @@
  */
 package stringSearchAlgorithms;
 
+import stringsearch_algorithms.BoyerMoore;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
