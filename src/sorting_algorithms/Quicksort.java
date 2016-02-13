@@ -16,36 +16,33 @@
  */
 package sorting_algorithms;
 
-import algo_interfaces.SortingAlgorithm;
 import java.util.Comparator;
+import algo_interfaces.InPlaceSort;
 
 /**
  *
  * @author Matthias Fussenegger
- * @param <T> Generic type parameter
  */
-public class Quicksort<T> implements SortingAlgorithm {
+public class Quicksort implements InPlaceSort {
 
     /**
      * A reference to the array that will be sorted
      */
-    private T[] _values;
+    private Object[] _values;
 
     @Override
-    @SuppressWarnings("unchecked")
-    public void sort(Object[] values) {
+    public <T> void sort(T[] values) {
         if (values.length > 1) {
-            _values = (T[]) values;
+            _values = values;
             quicksortComparable(0, _values.length - 1);
         }
     }
 
     @Override
-    @SuppressWarnings("unchecked")
-    public void sort(Object[] values, Comparator c) {
+    public <T> void sort(T[] values, Comparator<? super T> c) {
         if (values.length > 1) {
-            _values = (T[]) values;
-            quicksortComparator(0, _values.length - 1, c);
+            _values = values;
+            quicksortUsingComparator(0, _values.length - 1, c);
         }
     }
 
@@ -53,15 +50,16 @@ public class Quicksort<T> implements SortingAlgorithm {
      * Main method for recursive call of Quicksort-algorithm using the specified
      * comparator for sorting the elements in the array
      *
+     * @param <T> Generic type parameter
      * @param left The left boundary of the array
      * @param right The right boundary of the array
      * @param c The comparator used for sorting the array
      */
-    private void quicksortComparator(int left, int right, Comparator<? super T> c) {
+    private <T> void quicksortUsingComparator(int left, int right, Comparator<? super T> c) {
         if (left < right) {
-            int div = divideComparator(left, right, c);
-            quicksortComparator(left, div - 1, c);
-            quicksortComparator(div + 1, right, c);
+            int div = divideUsingComparator(left, right, c);
+            quicksortUsingComparator(left, div - 1, c);
+            quicksortUsingComparator(div + 1, right, c);
         }
     }
 
@@ -83,37 +81,39 @@ public class Quicksort<T> implements SortingAlgorithm {
     /**
      * The division/partition method used by {@code quicksortComparator}
      *
+     * @param <T> Generic type parameter
      * @param left The left boundary of the array
      * @param right The right boundary of the array
      * @param c The comparator used for sorting the array
      * @return The new position of the pivot element
      */
-    private int divideComparator(int left, int right, Comparator<? super T> c) {
+    @SuppressWarnings("unchecked")
+    private <T> int divideUsingComparator(int left, int right, Comparator<? super T> c) {
         int i = left;
         int j = right - 1; //element to the left of pivot
-        T pivot = _values[right];
+        T pivot = (T) _values[right];
 
         do {
             /*search element from the left, which is bigger than pivot*/
-            while (c.compare(_values[i], pivot) <= 0 && i < right) {
+            while (c.compare((T) _values[i], pivot) <= 0 && i < right) {
                 ++i;
             }
 
             /*search element from the right, which is smaller than pivot*/
-            while (c.compare(_values[j], pivot) >= 0 && j > left) {
+            while (c.compare((T) _values[j], pivot) >= 0 && j > left) {
                 --j;
             }
 
             if (i < j) { //swap
-                T temp = _values[i];
+                T temp = (T) _values[i];
                 _values[i] = _values[j];
                 _values[j] = temp;
             }
         } while (i < j);
 
         /*swap pivot with new final position*/
-        if (c.compare(_values[i], pivot) > 0) {
-            T temp = _values[i];
+        if (c.compare((T) _values[i], pivot) > 0) {
+            T temp = (T) _values[i];
             _values[i] = _values[right];
             _values[right] = temp;
         }
@@ -124,15 +124,16 @@ public class Quicksort<T> implements SortingAlgorithm {
     /**
      * The division/partition method used by {@code quicksortComparator}
      *
+     * @param <T> Generic type parameter
      * @param left The left boundary of the array
      * @param right The right boundary of the array
      * @return The new position of the pivot element
      */
     @SuppressWarnings("unchecked")
-    private int divideComparable(int left, int right) {
+    private <T> int divideComparable(int left, int right) {
         int i = left;
         int j = right - 1; //element to the left of pivot
-        T pivot = _values[right];
+        T pivot = (T) _values[right];
 
         do {
             /*search element from the left, which is bigger than pivot*/
@@ -148,7 +149,7 @@ public class Quicksort<T> implements SortingAlgorithm {
             }
 
             if (i < j) { //swap
-                T temp = _values[i];
+                T temp = (T) _values[i];
                 _values[i] = _values[j];
                 _values[j] = temp;
             }
@@ -156,7 +157,7 @@ public class Quicksort<T> implements SortingAlgorithm {
 
         /*swap pivot with new final position*/
         if (((Comparable<? super T>) _values[i]).compareTo(pivot) > 0) {
-            T temp = _values[i];
+            T temp = (T) _values[i];
             _values[i] = _values[right];
             _values[right] = temp;
         }

@@ -17,26 +17,30 @@
 package algo_interfaces;
 
 import java.util.Comparator;
+import java.util.List;
 
 /**
  *
  * @author Matthias Fussenegger
- * @param <T> Generic type parameter
  */
-public interface SortingAlgorithm<T> {
+public interface OutPlaceSort {
 
     /**
-     * Sorts the given array using the the natural ordering of its elements
+     * Sorts a {@code List} using the natural ordering of its elements
      *
-     * @param values An array containing any type
+     * @param <T> Generic type parameter
+     * @param values A {@code List} consisting of elements of any type
+     * @return The sorted {@code List}
      */
-    void sort(T[] values);
+    <T> List<T> sort(List<T> values);
 
     /**
-     * Sorts the given array using the specified comparator
+     * Sorts a {@code List} using the specified {@code Comparator}
      *
-     * @param values An array containing any type
-     * @param c The comparator used for sorting the array
+     * @param <T> Generic type parameter
+     * @param values A {@code List} consisting of elements of any type
+     * @param c The {@code Comparator} used for sorting the list elements
+     * @return The sorted {@code List}
      */
-    void sort(T[] values, Comparator<? super T> c);
+    <T> List<T> sort(List<T> values, Comparator<? super T> c);
 }

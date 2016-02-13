@@ -16,23 +16,22 @@
  */
 package sorting_algorithms;
 
-import algo_interfaces.SortingAlgorithm;
 import java.util.Comparator;
+import algo_interfaces.InPlaceSort;
 
 /**
  *
  * @author Matthias Fussenegger
- * @param <T> Generic type parameter
  */
-public class BubbleSort<T> implements SortingAlgorithm {
+public class BubbleSort implements InPlaceSort {
 
     @Override
     @SuppressWarnings("unchecked")
-    public void sort(Object[] values) {
+    public <T> void sort(T[] values) {
         for (int n = values.length; n > 1; --n) {
             for (int j = 0; j < n - 1; ++j) {
-                if (((Comparable<? super T>) values[j]).compareTo((T) values[j + 1]) > 0) {
-                    T temp = (T) values[j];
+                if (((Comparable<? super T>) values[j]).compareTo(values[j + 1]) > 0) {
+                    T temp = values[j];
                     values[j] = values[j + 1];
                     values[j + 1] = temp;
                 }
@@ -42,11 +41,11 @@ public class BubbleSort<T> implements SortingAlgorithm {
 
     @Override
     @SuppressWarnings("unchecked")
-    public void sort(Object[] values, Comparator c) {
+    public <T> void sort(T[] values, Comparator<? super T> c) {
         for (int n = values.length; n > 1; --n) {
             for (int j = 0; j < n - 1; ++j) {
                 if (c.compare(values[j], values[j + 1]) > 0) {
-                    T temp = (T) values[j];
+                    T temp = values[j];
                     values[j] = values[j + 1];
                     values[j + 1] = temp;
                 }

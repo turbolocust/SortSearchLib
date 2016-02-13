@@ -16,18 +16,28 @@
  */
 package algo_interfaces;
 
+import java.util.Comparator;
+
 /**
  *
  * @author Matthias Fussenegger
  */
-public interface StringSearchAlgorithm {
+public interface InPlaceSort {
 
     /**
-     * Finds the first occurrence of the pattern in the {@code stack}
+     * Sorts an array using the natural ordering of its elements
      *
-     * @param stack The text to be searched for pattern
-     * @param pattern The pattern to be found in the text
-     * @return The position of the first occurrence in the text
+     * @param <T> Generic type parameter
+     * @param values An array consisting of elements of any type
      */
-    int indexOf(char[] stack, String pattern);
+    <T> void sort(T[] values);
+
+    /**
+     * Sorts an array using the specified {@code Comparator}
+     *
+     * @param <T> Generic type parameter
+     * @param values An array consisting of elements of any type
+     * @param c The {@code Comparator} used for sorting the array
+     */
+    <T> void sort(T[] values, Comparator<? super T> c);
 }

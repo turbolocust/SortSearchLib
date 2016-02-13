@@ -16,22 +16,21 @@
  */
 package sorting_algorithms;
 
-import algo_interfaces.SortingAlgorithm;
 import java.util.Comparator;
+import algo_interfaces.InPlaceSort;
 
 /**
  *
  * @author Matthias Fussenegger
- * @param <T> Generic type parameter
  */
-public class InsertionSort<T> implements SortingAlgorithm {
+public class InsertionSort implements InPlaceSort {
 
     @Override
     @SuppressWarnings("unchecked")
-    public void sort(Object[] values) {
+    public <T> void sort(T[] values) {
         if (values.length > 1) {
             for (int i = 1; i < values.length; ++i) {
-                T temp = (T) values[i];
+                T temp = values[i];
                 int j = i;
                 while (j > 0 && ((Comparable<? super T>) values[j - 1]).compareTo(temp) > 0) {
                     values[j] = values[j - 1];
@@ -44,11 +43,11 @@ public class InsertionSort<T> implements SortingAlgorithm {
 
     @Override
     @SuppressWarnings("unchecked")
-    public void sort(Object[] values, Comparator c) {
+    public <T> void sort(T[] values, Comparator<? super T> c) {
         if (c != null) {
             if (values.length > 1) {
                 for (int i = 1; i < values.length; ++i) {
-                    T temp = (T) values[i];
+                    T temp = values[i];
                     int j = i;
                     while (j > 0 && c.compare(values[j - 1], temp) > 0) {
                         values[j] = values[j - 1];

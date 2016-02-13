@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2016 Matthias
+ * Copyright (C) 2016 Matthias Fussenegger
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -14,9 +14,8 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package sortingAlgorithms;
+package sorting_algorithms;
 
-import sorting_algorithms.InsertionSort;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
@@ -24,7 +23,7 @@ import java.util.LinkedList;
 import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
-import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -33,7 +32,7 @@ import org.junit.Test;
  *
  * @author Matthias Fussenegger
  */
-public class InsertionSortTest {
+public class QuicksortTest {
 
     /**
      * The list to be tested
@@ -41,7 +40,7 @@ public class InsertionSortTest {
     private final List _list;
 
     @SuppressWarnings("unchecked")
-    public InsertionSortTest() {
+    public QuicksortTest() {
         _list = new LinkedList<>();
         _list.add(0);
         _list.add(1);
@@ -72,12 +71,12 @@ public class InsertionSortTest {
     }
 
     /**
-     * Test of sort method, of class InsertionSort.
+     * Test of sort method, of class Quicksort.
      */
     @Test
     public void testSort_List() {
-        System.out.println("sort - InsertionSort");
-        InsertionSort instance = new InsertionSort();
+        System.out.println("sort - Quicksort");
+        Quicksort instance = new Quicksort();
         Collections.shuffle(_list);
         Object[] values = _list.toArray();
         instance.sort(values);
@@ -87,13 +86,13 @@ public class InsertionSortTest {
     }
 
     /**
-     * Test of sort method, of class InsertionSort.
+     * Test of sort method, of class Quicksort.
      */
     @Test
     @SuppressWarnings("unchecked")
     public void testSort_List_Comparator() {
-        System.out.println("sort using comparator - InsertionSort");
-        InsertionSort instance = new InsertionSort();
+        System.out.println("sort using comparator - Quicksort");
+        Quicksort instance = new Quicksort();
         Collections.shuffle(_list);
         Object[] values = _list.toArray();
         Comparator c = (Comparator) (Object o1, Object o2) -> {
