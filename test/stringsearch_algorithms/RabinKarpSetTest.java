@@ -14,9 +14,10 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package stringSearchAlgorithms;
+package stringsearch_algorithms;
 
-import stringsearch_algorithms.BoyerMoore;
+import java.util.HashSet;
+import java.util.Set;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -28,9 +29,9 @@ import static org.junit.Assert.*;
  *
  * @author Matthias Fussenegger
  */
-public class BoyerMooreTest {
+public class RabinKarpSetTest {
 
-    public BoyerMooreTest() {
+    public RabinKarpSetTest() {
     }
 
     @BeforeClass
@@ -50,25 +51,24 @@ public class BoyerMooreTest {
     }
 
     /**
-     * Test of indexOf method, of class BoyerMoore.
+     * Test of indexOf method, of class RabinKarpSet.
      */
     @Test
     public void testIndexOf() {
-        System.out.println("indexOf - BoyerMoore");
+        System.out.println("indexOf - RabinKarpSet");
         String text = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, "
                 + "sed diam nonumy eirmod tempor invidunt ut labore et dolore magna "
-                + "aliquyam erat, sed diam voluptua. At vero eos et accusam et justo "
-                + "duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata "
-                + "sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, "
-                + "consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut "
-                + "labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et "
-                + "accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no "
-                + "sea takimata sanctus est Lorem ipsum dolor sit amet.";
+                + "aliquyam erat, sed diam voluptua.";
         char[] stack = text.toCharArray();
-        String needle = "sit";
-        BoyerMoore instance = new BoyerMoore();
-        int expResult = 18;
-        int result = instance.indexOf(stack, needle);
-        assertEquals(expResult, result);
+        Set<String> patterns = new HashSet<>();
+        patterns.add("sit");
+        patterns.add("con");
+        int patternLength = 3;
+        int[] expectedResult = new int[2];
+        expectedResult[0] = 18;
+        expectedResult[1] = 28;
+        RabinKarpSet instance = new RabinKarpSet();
+        int[] result = instance.indexOf(stack, patterns, patternLength);
+        assertArrayEquals(expectedResult, result);
     }
 }

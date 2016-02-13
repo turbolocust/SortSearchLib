@@ -14,9 +14,8 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package stringSearchAlgorithms;
+package stringsearch_algorithms;
 
-import stringsearch_algorithms.KnuthMorrisPratt;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -28,9 +27,9 @@ import static org.junit.Assert.*;
  *
  * @author Matthias Fussenegger
  */
-public class KnuthMorrisPrattTest {
+public class BoyerMooreTest {
 
-    public KnuthMorrisPrattTest() {
+    public BoyerMooreTest() {
     }
 
     @BeforeClass
@@ -50,11 +49,11 @@ public class KnuthMorrisPrattTest {
     }
 
     /**
-     * Test of indexOf method, of class KnuthMorrisPratt.
+     * Test of indexOf method, of class BoyerMoore.
      */
     @Test
     public void testIndexOf() {
-        System.out.println("indexOf - KnuthMorrisPratt");
+        System.out.println("indexOf - BoyerMoore");
         String text = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, "
                 + "sed diam nonumy eirmod tempor invidunt ut labore et dolore magna "
                 + "aliquyam erat, sed diam voluptua. At vero eos et accusam et justo "
@@ -66,7 +65,7 @@ public class KnuthMorrisPrattTest {
                 + "sea takimata sanctus est Lorem ipsum dolor sit amet.";
         char[] stack = text.toCharArray();
         String needle = "sit";
-        KnuthMorrisPratt instance = new KnuthMorrisPratt();
+        BoyerMoore instance = new BoyerMoore();
         int expResult = 18;
         int result = instance.indexOf(stack, needle);
         assertEquals(expResult, result);

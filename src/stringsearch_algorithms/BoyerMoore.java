@@ -16,13 +16,13 @@
  */
 package stringsearch_algorithms;
 
-import algo_interfaces.StringSearchAlgorithm;
+import algo_interfaces.SingleStringSearch;
 
 /**
  *
  * @author Matthias Fussenegger
  */
-public class BoyerMoore implements StringSearchAlgorithm {
+public class BoyerMoore implements SingleStringSearch {
 
     @Override
     public int indexOf(char[] stack, String needle) {

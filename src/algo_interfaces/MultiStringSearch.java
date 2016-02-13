@@ -16,18 +16,23 @@
  */
 package algo_interfaces;
 
+import java.util.Set;
+
 /**
  *
  * @author Matthias Fussenegger
  */
-public interface StringSearchAlgorithm {
+public interface MultiStringSearch {
 
     /**
-     * Finds the first occurrence of the pattern in the {@code stack}
+     * Finds the occurrences of the patterns in the {@code stack}. This
+     * implementation only works with patterns having a fixed size, so each
+     * pattern of the {@code Set} needs to have the same length
      *
-     * @param stack The text to be searched for pattern
-     * @param pattern The pattern to be found in the text
-     * @return The position of the first occurrence in the text
+     * @param stack The text to be searched for the patterns
+     * @param patterns The patterns to be found in the text
+     * @param patternLength The fixed length of each pattern
+     * @return The positions of occurrences of the patterns in the text
      */
-    int indexOf(char[] stack, String pattern);
+    int[] indexOf(char[] stack, Set<String> patterns, int patternLength);
 }

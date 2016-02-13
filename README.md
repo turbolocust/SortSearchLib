@@ -10,4 +10,5 @@ A library that offers various sorting and string search algorithms, including:
 <ul>
   <li>Boyer-Moore</li>
   <li>Knuth-Morris-Pratt</li>
+  <li>Rabin-Karp (with Set)</li>
 </ul>
