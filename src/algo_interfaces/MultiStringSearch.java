@@ -29,10 +29,11 @@ public interface MultiStringSearch {
      * implementation only works with patterns having a fixed size, so each
      * pattern of the {@code Set} needs to have the same length
      *
-     * @param stack The text to be searched for the patterns
+     * @param text The text to be searched for the patterns
      * @param patterns The patterns to be found in the text
      * @param patternLength The fixed length of each pattern
-     * @return The positions of occurrences of the patterns in the text
+     * @return The positions of occurrences of the patterns in the text or
+     * {@code null} if no pattern is a substring of the text
      */
-    int[] indexOf(char[] stack, Set<String> patterns, int patternLength);
+    int[] indexOf(char[] text, Set<String> patterns, int patternLength);
 }

@@ -25,9 +25,10 @@ public interface SingleStringSearch {
     /**
      * Finds the first occurrence of the pattern in the {@code stack}
      *
-     * @param stack The text to be searched for pattern
+     * @param text The text to be searched for pattern
      * @param pattern The pattern to be found in the text
-     * @return The position of the first occurrence in the text
+     * @return The position of the first occurrence in the text or a negative
+     * {@code Integer} if pattern is no substring of the text
      */
-    int indexOf(char[] stack, String pattern);
+    int indexOf(char[] text, String pattern);
 }

@@ -25,13 +25,13 @@ import algo_interfaces.SingleStringSearch;
 public class KnuthMorrisPratt implements SingleStringSearch {
 
     @Override
-    public int indexOf(char[] stack, String needle) {
-        if (needle.length() == 0 || stack.length == 0) {
+    public int indexOf(char[] text, String pattern) {
+        if (pattern.length() == 0 || text.length == 0) {
             return 0;
         }
 
-        int[] prefixTable = makePrefixTable(needle);
-        int i = search(stack, needle, prefixTable);
+        int[] prefixTable = makePrefixTable(pattern);
+        int i = search(text, pattern, prefixTable);
 
         return i;
     }
@@ -39,15 +39,15 @@ public class KnuthMorrisPratt implements SingleStringSearch {
     /**
      * Calculation of the prefix table
      *
-     * @param needle The pattern that is required for table creation
+     * @param pattern The pattern that is required for table creation
      * @return An array representing the prefix table
      */
-    private int[] makePrefixTable(String needle) {
-        int[] prefixTable = new int[needle.length() + 1];
+    private int[] makePrefixTable(String pattern) {
+        int[] prefixTable = new int[pattern.length() + 1];
         prefixTable[0] = -1; //first element has to be -1
 
-        for (int i = 0, j = -1; i < needle.length();) {
-            while (j >= 0 && needle.charAt(j) != needle.charAt(i)) {
+        for (int i = 0, j = -1; i < pattern.length();) {
+            while (j >= 0 && pattern.charAt(j) != pattern.charAt(i)) {
                 j = prefixTable[j];
             }
             ++i;
@@ -58,27 +58,27 @@ public class KnuthMorrisPratt implements SingleStringSearch {
     }
 
     /**
-     * The actual search of the beginning of the needle in the stack
+     * The actual search of the beginning of the pattern in the text
      *
-     * @param stack The stack to be searched for needle
-     * @param needle The needle to be found in text
+     * @param text The text to be searched for pattern
+     * @param pattern The pattern to be found in text
      * @param prefixTable The previously generated prefix table
      * @return The position of the first occurrence in the text
      */
-    private int search(char[] stack, String needle, int[] prefixTable) {
-        int i = 0; //position in stack
-        int j = 0; //position in needle
+    private int search(char[] text, String pattern, int[] prefixTable) {
+        int i = 0; //position in text
+        int j = 0; //position in pattern
 
-        while (j < needle.length() && i < stack.length) {
-            if (j == -1 || stack[i] == needle.charAt(j)) {
+        while (j < pattern.length() && i < text.length) {
+            if (j == -1 || text[i] == pattern.charAt(j)) {
                 ++i;
                 ++j;
             } else {
                 j = prefixTable[j];
             }
         }
-        if (j == needle.length()) {
-            return (i - needle.length());
+        if (j == pattern.length()) {
+            return (i - pattern.length());
         } else {
             return -1; //not a substring
         }

@@ -29,8 +29,8 @@ import java.util.Set;
 public class RabinKarpSet implements MultiStringSearch {
 
     @Override
-    public int[] indexOf(char[] stack, Set<String> patterns, int patternLength) {
-        if (stack.length < 1 || stack.length < patternLength) {
+    public int[] indexOf(char[] text, Set<String> patterns, int patternLength) {
+        if (text.length < 1 || text.length < patternLength) {
             return null;
         }
 
@@ -42,13 +42,13 @@ public class RabinKarpSet implements MultiStringSearch {
             patternHashes.add(s.hashCode());
         });
 
-        int hash = hashFromStack(stack, 0, patternLength);
-        for (int i = 1; i <= stack.length - patternLength; ++i) {
+        int hash = hashFromStack(text, 0, patternLength);
+        for (int i = 1; i <= text.length - patternLength; ++i) {
             if (patternHashes.contains(hash)
-                    && patterns.contains(String.valueOf(stack, i - 1, patternLength))) {
+                    && patterns.contains(String.valueOf(text, i - 1, patternLength))) {
                 occurrences.add(i - 1);
             }
-            hash = hashFromStack(stack, i, patternLength);
+            hash = hashFromStack(text, i, patternLength);
         }
 
         return convertToArray(occurrences);
@@ -56,17 +56,17 @@ public class RabinKarpSet implements MultiStringSearch {
 
     /**
      * Calculates a hash from a specified {@code offset} to a maximum @code
-     * count} in {@code stack}. This represents a sub-array of the original
+     * count} in {@code text}. This represents a sub-array of the original
      * array and this calculated hash is used to compare values from the
-     * {@code patternHashes} with the current position in {@code stack}
+     * {@code patternHashes} with the current position in {@code text}
      *
-     * @param stack The array containing {@code Characters}
+     * @param text The array containing {@code Characters}
      * @param offset The index to begin with
      * @param count The length of the sub-array
-     * @return The hash of offset position to count in {@code stack}
+     * @return The hash of offset position to count in {@code text}
      */
-    private int hashFromStack(char[] stack, int offset, int count) {
-        String s = String.copyValueOf(stack, offset, count);
+    private int hashFromStack(char[] text, int offset, int count) {
+        String s = String.copyValueOf(text, offset, count);
         return s.hashCode();
     }
 
