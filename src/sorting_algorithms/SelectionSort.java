@@ -16,45 +16,43 @@
  */
 package sorting_algorithms;
 
-import java.util.Comparator;
 import algo_interfaces.InPlaceSort;
+import java.util.Comparator;
 
 /**
  *
  * @author Matthias Fussenegger
  */
-public class InsertionSort implements InPlaceSort {
+public class SelectionSort implements InPlaceSort {
 
     @Override
     @SuppressWarnings("unchecked")
     public <T> void sort(T[] values) {
-        if (values.length > 1) {
-            for (int i = 1; i < values.length; ++i) {
-                T temp = values[i];
-                int j = i;
-                while (j > 0 && ((Comparable<? super T>) values[j - 1]).compareTo(temp) > 0) {
-                    values[j] = values[j - 1];
-                    --j;
+        for (int i = values.length - 1; i > 0; --i) {
+            int min = 0;
+            for (int j = 0; j < i + 1; ++j) {
+                if (((Comparable<? super T>) values[j]).compareTo((T) values[min]) > 0) {
+                    min = j;
                 }
-                values[j] = temp;
             }
+            T temp = (T) values[min];
+            values[min] = values[i];
+            values[i] = temp;
         }
     }
 
     @Override
     public <T> void sort(T[] values, Comparator<? super T> c) {
-        if (c != null) {
-            if (values.length > 1) {
-                for (int i = 1; i < values.length; ++i) {
-                    T temp = values[i];
-                    int j = i;
-                    while (j > 0 && c.compare(values[j - 1], temp) > 0) {
-                        values[j] = values[j - 1];
-                        --j;
-                    }
-                    values[j] = temp;
+        for (int i = values.length - 1; i > 0; --i) {
+            int min = 0;
+            for (int j = 0; j < i + 1; ++j) {
+                if (c.compare(values[j], values[min]) > 0) {
+                    min = j;
                 }
             }
+            T temp = (T) values[min];
+            values[min] = values[i];
+            values[i] = temp;
         }
     }
 }
