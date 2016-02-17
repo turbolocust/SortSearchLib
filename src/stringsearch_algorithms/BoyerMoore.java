@@ -40,7 +40,7 @@ public class BoyerMoore implements SingleStringSearch {
             }
             i += Math.max(nextTable[pattern.length() - 1 - j], skipTable[text[i]]);
         }
-        return -1; //not a substring
+        return NOT_FOUND;
     }
 
     /**

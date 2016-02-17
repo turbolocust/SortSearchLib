@@ -29,12 +29,12 @@ import java.util.Set;
 public class RabinKarpSet implements MultiStringSearch {
 
     @Override
-    public int[] indexOf(char[] text, Set<String> patterns, int patternLength) {
+    public int[] indexOf(char[] text, Set<CharSequence> patterns, int patternLength) {
         if (text.length < 1 || text.length < patternLength) {
             return null;
         }
 
-        LinkedList<Integer> occurrences = new LinkedList<>();
+        List<Integer> occurrences = new LinkedList<>();
 
         Set<Integer> patternHashes = new HashSet<>();
         /*calculate hash for each pattern*/
@@ -43,6 +43,7 @@ public class RabinKarpSet implements MultiStringSearch {
         });
 
         int hash = hashFromStack(text, 0, patternLength);
+        /*start searching the text for pattern occurrences*/
         for (int i = 1; i <= text.length - patternLength; ++i) {
             if (patternHashes.contains(hash)
                     && patterns.contains(String.valueOf(text, i - 1, patternLength))) {
@@ -50,14 +51,13 @@ public class RabinKarpSet implements MultiStringSearch {
             }
             hash = hashFromStack(text, i, patternLength);
         }
-
         return convertToArray(occurrences);
     }
 
     /**
      * Calculates a hash from a specified {@code offset} to a maximum @code
-     * count} in {@code text}. This represents a sub-array of the original
-     * array and this calculated hash is used to compare values from the
+     * count} in {@code text}. This represents a sub-array of the original array
+     * and this calculated hash is used to compare values from the
      * {@code patternHashes} with the current position in {@code text}
      *
      * @param text The array containing {@code Characters}

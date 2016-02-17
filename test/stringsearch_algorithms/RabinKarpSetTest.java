@@ -60,7 +60,7 @@ public class RabinKarpSetTest {
                 + "sed diam nonumy eirmod tempor invidunt ut labore et dolore magna "
                 + "aliquyam erat, sed diam voluptua.";
         char[] stack = text.toCharArray();
-        Set<String> patterns = new HashSet<>();
+        Set<CharSequence> patterns = new HashSet<>();
         patterns.add("sit");
         patterns.add("con");
         int patternLength = 3;

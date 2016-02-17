@@ -23,6 +23,11 @@ package algo_interfaces;
 public interface SingleStringSearch {
 
     /**
+     * Indicates that the specified pattern has not been found
+     */
+    int NOT_FOUND = -1;
+
+    /**
      * Finds the first occurrence of the pattern in the {@code stack}
      *
      * @param text The text to be searched for pattern

@@ -80,7 +80,7 @@ public class KnuthMorrisPratt implements SingleStringSearch {
         if (j == pattern.length()) {
             return (i - pattern.length());
         } else {
-            return -1; //not a substring
+            return NOT_FOUND;
         }
     }
 }
