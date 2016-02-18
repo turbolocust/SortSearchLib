@@ -26,14 +26,14 @@ public class KnuthMorrisPratt implements SingleStringSearch {
 
     @Override
     public int indexOf(char[] text, String pattern) {
-        if (pattern.length() < 1 || text.length == 0) {
+        if (text.length < 1 || pattern.length() < 1) {
             return 0;
         }
 
         int[] prefixTable = makePrefixTable(pattern);
         int i = search(text, pattern, prefixTable);
 
-        return i;
+        return i + 1;
     }
 
     /**

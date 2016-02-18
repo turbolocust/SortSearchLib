@@ -29,7 +29,7 @@ import java.util.Set;
 public class RabinKarpSet implements MultiStringSearch {
 
     @Override
-    public int[] indexOf(char[] text, Set<CharSequence> patterns, int patternLength) {
+    public List<Integer> indexOf(char[] text, Set<CharSequence> patterns, int patternLength) {
         if (text.length < 1 || text.length < patternLength) {
             return null;
         }
@@ -42,16 +42,16 @@ public class RabinKarpSet implements MultiStringSearch {
             patternHashes.add(s.hashCode());
         });
 
-        int hash = hashFromStack(text, 0, patternLength);
-        /*start searching the text for pattern occurrences*/
+        int hash = hashFromText(text, 0, patternLength);
+        /*start searching the text for occurrences of patterns*/
         for (int i = 1; i <= text.length - patternLength; ++i) {
             if (patternHashes.contains(hash)
                     && patterns.contains(String.valueOf(text, i - 1, patternLength))) {
-                occurrences.add(i - 1);
+                occurrences.add(i);
             }
-            hash = hashFromStack(text, i, patternLength);
+            hash = hashFromText(text, i, patternLength);
         }
-        return convertToArray(occurrences);
+        return occurrences;
     }
 
     /**
@@ -65,30 +65,7 @@ public class RabinKarpSet implements MultiStringSearch {
      * @param count The length of the sub-array
      * @return The hash of offset position to count in {@code text}
      */
-    private int hashFromStack(char[] text, int offset, int count) {
-        String s = String.copyValueOf(text, offset, count);
-        return s.hashCode();
-    }
-
-    /**
-     * Converts the {@code List} with occurrences to an array with primitive
-     * data types. The array has the same length as the {@code List}
-     *
-     * @param list The {@code List} to be converted
-     * @return An array containing the values of the {@code List}
-     */
-    private int[] convertToArray(List<Integer> list) {
-        if (list.size() > 0) {
-            int[] occurrences = new int[list.size()];
-            int i = 0;
-            /*copy each list entry to array*/
-            for (Integer pos : list) {
-                occurrences[i] = pos;
-                ++i;
-            }
-            return occurrences;
-        } else {
-            return null;
-        }
+    private int hashFromText(char[] text, int offset, int count) {
+        return String.copyValueOf(text, offset, count).hashCode();
     }
 }

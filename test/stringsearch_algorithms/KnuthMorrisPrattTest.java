@@ -57,8 +57,10 @@ public class KnuthMorrisPrattTest implements TestableSearch {
         char[] stack = TEXT.toCharArray();
         String needle = "sit";
         KnuthMorrisPratt instance = new KnuthMorrisPratt();
-        int expResult = 18;
+        int expResult = 19;
+        long startTime = System.nanoTime();
         int result = instance.indexOf(stack, needle);
+        System.out.println(System.nanoTime() - startTime);
         assertEquals(expResult, result);
     }
 }

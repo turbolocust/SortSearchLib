@@ -16,6 +16,7 @@
  */
 package algo_interfaces;
 
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -32,8 +33,30 @@ public interface MultiStringSearch {
      * @param text The text to be searched for the patterns
      * @param patterns A {@code Set} of patterns to be found in the text
      * @param patternLength The fixed length of each pattern
-     * @return The positions of occurrences of the patterns in the text or
-     * {@code null} if no pattern is a substring of the text
+     * @return The positions of pattern occurrences in the text or {@code null}
+     * if no pattern is a substring of the text, meaning no match has been found
      */
-    int[] indexOf(char[] text, Set<CharSequence> patterns, int patternLength);
+    List<Integer> indexOf(char[] text, Set<CharSequence> patterns, int patternLength);
+
+    /**
+     * Converts the {@code List<Integer>} with occurrences to an array with
+     * primitive data types. The array has the same length as the {@code List}
+     *
+     * @param list The {@code List} to be converted
+     * @return An array containing the values of the {@code List}
+     */
+    default int[] convertToArray(List<Integer> list) {
+        if (list.size() > 0) {
+            int[] occurrences = new int[list.size()];
+            int i = 0;
+            /*copy each list entry to array*/
+            for (Integer pos : list) {
+                occurrences[i] = pos;
+                ++i;
+            }
+            return occurrences;
+        } else {
+            return null;
+        }
+    }
 }

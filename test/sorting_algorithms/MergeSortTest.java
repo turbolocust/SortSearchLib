@@ -62,7 +62,9 @@ public class MergeSortTest implements TestableSort {
         System.out.println("sort - MergeSort");
         MergeSort instance = new MergeSort();
         Collections.shuffle(VALUES);
+        long startTime = System.nanoTime();
         List result = instance.sort(VALUES);
+        System.out.println(System.nanoTime() - startTime);
         Collections.sort(VALUES);
         assertEquals(VALUES, result);
     }
@@ -81,7 +83,9 @@ public class MergeSortTest implements TestableSort {
             Integer v2 = (Integer) o2;
             return v2.compareTo(v1);
         };
+        long startTime = System.nanoTime();
         List result = instance.sort(VALUES, c);
+        System.out.println(System.nanoTime() - startTime);
         Collections.sort(VALUES, c);
         assertEquals(VALUES, result);
     }

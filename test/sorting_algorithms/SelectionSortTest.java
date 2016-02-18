@@ -62,7 +62,9 @@ public class SelectionSortTest implements TestableSort {
         SelectionSort instance = new SelectionSort();
         Collections.shuffle(VALUES);
         Object[] values = VALUES.toArray();
+        long startTime = System.nanoTime();
         instance.sort(values);
+        System.out.println(System.nanoTime() - startTime);
         Object[] sortedValues = VALUES.toArray();
         Arrays.sort(sortedValues);
         assertArrayEquals(values, sortedValues);
@@ -83,7 +85,9 @@ public class SelectionSortTest implements TestableSort {
             Integer v2 = (Integer) o2;
             return v2.compareTo(v1);
         };
+        long startTime = System.nanoTime();
         instance.sort(values, c);
+        System.out.println(System.nanoTime() - startTime);
         Object[] sortedValues = VALUES.toArray();
         Arrays.sort(sortedValues, c);
         assertArrayEquals(values, sortedValues);

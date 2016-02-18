@@ -26,7 +26,7 @@ public class BoyerMoore implements SingleStringSearch {
 
     @Override
     public int indexOf(char[] text, String pattern) {
-        if (pattern.length() < 1 || text.length == 0) {
+        if (text.length < 1 || pattern.length() < 1) {
             return 0;
         }
         int skipTable[] = makeSkipTable(pattern);
@@ -35,7 +35,7 @@ public class BoyerMoore implements SingleStringSearch {
         while (i < text.length) {
             for (j = pattern.length() - 1; pattern.charAt(j) == text[i]; --i, --j) {
                 if (j == 0) {
-                    return i;
+                    return i + 1;
                 }
             }
             i += Math.max(nextTable[pattern.length() - 1 - j], skipTable[text[i]]);
