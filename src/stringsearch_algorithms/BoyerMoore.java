@@ -26,7 +26,7 @@ public class BoyerMoore implements SingleStringSearch {
 
     @Override
     public int indexOf(char[] text, String pattern) {
-        if (pattern.length() == 0 || text.length == 0) {
+        if (pattern.length() < 1 || text.length == 0) {
             return 0;
         }
         int skipTable[] = makeSkipTable(pattern);
@@ -94,8 +94,8 @@ public class BoyerMoore implements SingleStringSearch {
     }
 
     /**
-     * Returns the maximum length of the pattern that ends at {@code pos}. To put
-     * it more generally: Returns the suffix length of the pattern
+     * Returns the maximum length of the pattern that ends at {@code pos}. To
+     * put it more generally: Returns the suffix length of the pattern
      *
      * @param pattern The pattern that is required to determine suffix length
      * @param pos The current position in the pattern

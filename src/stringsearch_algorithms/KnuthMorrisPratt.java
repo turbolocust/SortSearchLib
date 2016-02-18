@@ -26,7 +26,7 @@ public class KnuthMorrisPratt implements SingleStringSearch {
 
     @Override
     public int indexOf(char[] text, String pattern) {
-        if (pattern.length() == 0 || text.length == 0) {
+        if (pattern.length() < 1 || text.length == 0) {
             return 0;
         }
 

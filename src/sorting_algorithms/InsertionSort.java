@@ -28,7 +28,7 @@ public class InsertionSort implements InPlaceSort {
     @Override
     @SuppressWarnings("unchecked")
     public <T> void sort(T[] values) {
-        if (values.length > 1) {
+        if (values != null && values.length > 1) {
             for (int i = 1; i < values.length; ++i) {
                 T temp = values[i];
                 int j = i;
@@ -43,17 +43,15 @@ public class InsertionSort implements InPlaceSort {
 
     @Override
     public <T> void sort(T[] values, Comparator<? super T> c) {
-        if (c != null) {
-            if (values.length > 1) {
-                for (int i = 1; i < values.length; ++i) {
-                    T temp = values[i];
-                    int j = i;
-                    while (j > 0 && c.compare(values[j - 1], temp) > 0) {
-                        values[j] = values[j - 1];
-                        --j;
-                    }
-                    values[j] = temp;
+        if (values != null && values.length > 1) {
+            for (int i = 1; i < values.length; ++i) {
+                T temp = values[i];
+                int j = i;
+                while (j > 0 && c.compare(values[j - 1], temp) > 0) {
+                    values[j] = values[j - 1];
+                    --j;
                 }
+                values[j] = temp;
             }
         }
     }

@@ -28,12 +28,14 @@ public class BubbleSort implements InPlaceSort {
     @Override
     @SuppressWarnings("unchecked")
     public <T> void sort(T[] values) {
-        for (int n = values.length; n > 1; --n) {
-            for (int j = 0; j < n - 1; ++j) {
-                if (((Comparable<? super T>) values[j]).compareTo(values[j + 1]) > 0) {
-                    T temp = values[j];
-                    values[j] = values[j + 1];
-                    values[j + 1] = temp;
+        if (values != null && values.length > 1) {
+            for (int n = values.length; n > 1; --n) {
+                for (int j = 0; j < n - 1; ++j) {
+                    if (((Comparable<? super T>) values[j]).compareTo(values[j + 1]) > 0) {
+                        T temp = values[j];
+                        values[j] = values[j + 1];
+                        values[j + 1] = temp;
+                    }
                 }
             }
         }
@@ -42,12 +44,14 @@ public class BubbleSort implements InPlaceSort {
     @Override
     @SuppressWarnings("unchecked")
     public <T> void sort(T[] values, Comparator<? super T> c) {
-        for (int n = values.length; n > 1; --n) {
-            for (int j = 0; j < n - 1; ++j) {
-                if (c.compare(values[j], values[j + 1]) > 0) {
-                    T temp = values[j];
-                    values[j] = values[j + 1];
-                    values[j + 1] = temp;
+        if (values != null && values.length > 1) {
+            for (int n = values.length; n > 1; --n) {
+                for (int j = 0; j < n - 1; ++j) {
+                    if (c.compare(values[j], values[j + 1]) > 0) {
+                        T temp = values[j];
+                        values[j] = values[j + 1];
+                        values[j + 1] = temp;
+                    }
                 }
             }
         }

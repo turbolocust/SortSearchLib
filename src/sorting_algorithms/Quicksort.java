@@ -27,14 +27,14 @@ public class Quicksort implements InPlaceSort {
 
     @Override
     public <T> void sort(T[] values) {
-        if (values.length > 1) {
+        if (values != null && values.length > 1) {
             quicksortComparable(0, values.length - 1, values);
         }
     }
 
     @Override
     public <T> void sort(T[] values, Comparator<? super T> c) {
-        if (values.length > 1) {
+        if (values != null && values.length > 1) {
             quicksortUsingComparator(0, values.length - 1, c, values);
         }
     }
@@ -110,7 +110,6 @@ public class Quicksort implements InPlaceSort {
             values[i] = values[right];
             values[right] = temp;
         }
-
         return i; //return position of pivot
     }
 
@@ -154,7 +153,6 @@ public class Quicksort implements InPlaceSort {
             values[i] = values[right];
             values[right] = temp;
         }
-
         return i; //return position of pivot
     }
 }

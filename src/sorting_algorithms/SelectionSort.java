@@ -28,31 +28,35 @@ public class SelectionSort implements InPlaceSort {
     @Override
     @SuppressWarnings("unchecked")
     public <T> void sort(T[] values) {
-        for (int i = values.length - 1; i > 0; --i) {
-            int min = 0;
-            for (int j = 0; j < i + 1; ++j) {
-                if (((Comparable<? super T>) values[j]).compareTo((T) values[min]) > 0) {
-                    min = j;
+        if (values != null && values.length > 1) {
+            for (int i = values.length - 1; i > 0; --i) {
+                int min = 0;
+                for (int j = 0; j < i + 1; ++j) {
+                    if (((Comparable<? super T>) values[j]).compareTo((T) values[min]) > 0) {
+                        min = j;
+                    }
                 }
+                T temp = (T) values[min];
+                values[min] = values[i];
+                values[i] = temp;
             }
-            T temp = (T) values[min];
-            values[min] = values[i];
-            values[i] = temp;
         }
     }
 
     @Override
     public <T> void sort(T[] values, Comparator<? super T> c) {
-        for (int i = values.length - 1; i > 0; --i) {
-            int min = 0;
-            for (int j = 0; j < i + 1; ++j) {
-                if (c.compare(values[j], values[min]) > 0) {
-                    min = j;
+        if (values != null && values.length > 1) {
+            for (int i = values.length - 1; i > 0; --i) {
+                int min = 0;
+                for (int j = 0; j < i + 1; ++j) {
+                    if (c.compare(values[j], values[min]) > 0) {
+                        min = j;
+                    }
                 }
+                T temp = (T) values[min];
+                values[min] = values[i];
+                values[i] = temp;
             }
-            T temp = (T) values[min];
-            values[min] = values[i];
-            values[i] = temp;
         }
     }
 }

@@ -29,7 +29,7 @@ public class MergeSort implements OutPlaceSort {
 
     @Override
     public <T> List<T> sort(List<T> list) {
-        if (list.size() <= 1) {
+        if (list == null || list.size() < 2) {
             return list;
         }
 
