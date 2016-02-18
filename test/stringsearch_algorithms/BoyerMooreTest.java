@@ -27,7 +27,7 @@ import static org.junit.Assert.*;
  *
  * @author Matthias Fussenegger
  */
-public class BoyerMooreTest {
+public class BoyerMooreTest implements TestableSearch {
 
     public BoyerMooreTest() {
     }
@@ -54,16 +54,7 @@ public class BoyerMooreTest {
     @Test
     public void testIndexOf() {
         System.out.println("indexOf - BoyerMoore");
-        String text = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, "
-                + "sed diam nonumy eirmod tempor invidunt ut labore et dolore magna "
-                + "aliquyam erat, sed diam voluptua. At vero eos et accusam et justo "
-                + "duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata "
-                + "sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, "
-                + "consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut "
-                + "labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et "
-                + "accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no "
-                + "sea takimata sanctus est Lorem ipsum dolor sit amet.";
-        char[] stack = text.toCharArray();
+        char[] stack = TEXT.toCharArray();
         String needle = "sit";
         BoyerMoore instance = new BoyerMoore();
         int expResult = 18;

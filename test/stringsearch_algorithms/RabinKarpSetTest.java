@@ -16,6 +16,7 @@
  */
 package stringsearch_algorithms;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 import org.junit.After;
@@ -29,7 +30,7 @@ import static org.junit.Assert.*;
  *
  * @author Matthias Fussenegger
  */
-public class RabinKarpSetTest {
+public class RabinKarpSetTest implements TestableSearch {
 
     public RabinKarpSetTest() {
     }
@@ -56,19 +57,23 @@ public class RabinKarpSetTest {
     @Test
     public void testIndexOf() {
         System.out.println("indexOf - RabinKarpSet");
-        String text = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, "
-                + "sed diam nonumy eirmod tempor invidunt ut labore et dolore magna "
-                + "aliquyam erat, sed diam voluptua.";
-        char[] stack = text.toCharArray();
+        char[] stack = TEXT.toCharArray();
         Set<CharSequence> patterns = new HashSet<>();
         patterns.add("sit");
         patterns.add("con");
         int patternLength = 3;
-        int[] expectedResult = new int[2];
+        int[] expectedResult = new int[6];
+        /*used a small C-program to validate these results*/
         expectedResult[0] = 18;
         expectedResult[1] = 28;
+        expectedResult[2] = 286;
+        expectedResult[3] = 314;
+        expectedResult[4] = 324;
+        expectedResult[5] = 582;
         RabinKarpSet instance = new RabinKarpSet();
         int[] result = instance.indexOf(stack, patterns, patternLength);
+        System.out.println(Arrays.toString(result));
+        System.out.println(TEXT);
         assertArrayEquals(expectedResult, result);
     }
 }

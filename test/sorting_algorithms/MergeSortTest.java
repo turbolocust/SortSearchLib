@@ -18,7 +18,6 @@ package sorting_algorithms;
 
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.LinkedList;
 import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -31,26 +30,11 @@ import static org.junit.Assert.*;
  *
  * @author Matthias Fussenegger
  */
-public class MergeSortTest {
-
-    /**
-     * The list to be tested
-     */
-    private final List _list;
+public class MergeSortTest implements TestableSort {
 
     @SuppressWarnings("unchecked")
     public MergeSortTest() {
-        _list = new LinkedList<>();
-        _list.add(0);
-        _list.add(1);
-        _list.add(2);
-        _list.add(3);
-        _list.add(4);
-        _list.add(5);
-        _list.add(6);
-        _list.add(7);
-        _list.add(8);
-        _list.add(9);
+        addDefaultListValues();
     }
 
     @BeforeClass
@@ -77,10 +61,10 @@ public class MergeSortTest {
     public void testSort_List() {
         System.out.println("sort - MergeSort");
         MergeSort instance = new MergeSort();
-        Collections.shuffle(_list);
-        List result = instance.sort(_list);
-        Collections.sort(_list);
-        assertEquals(_list, result);
+        Collections.shuffle(VALUES);
+        List result = instance.sort(VALUES);
+        Collections.sort(VALUES);
+        assertEquals(VALUES, result);
     }
 
     /**
@@ -91,14 +75,14 @@ public class MergeSortTest {
     public void testSort_List_Comparator() {
         System.out.println("sort using comparator - MergeSort");
         MergeSort instance = new MergeSort();
-        Collections.shuffle(_list);
+        Collections.shuffle(VALUES);
         Comparator c = (Comparator) (Object o1, Object o2) -> {
             Integer v1 = (Integer) o1;
             Integer v2 = (Integer) o2;
             return v2.compareTo(v1);
         };
-        List result = instance.sort(_list, c);
-        Collections.sort(_list, c);
-        assertEquals(_list, result);
+        List result = instance.sort(VALUES, c);
+        Collections.sort(VALUES, c);
+        assertEquals(VALUES, result);
     }
 }

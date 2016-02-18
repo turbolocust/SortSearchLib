@@ -19,8 +19,6 @@ package sorting_algorithms;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.LinkedList;
-import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -32,26 +30,11 @@ import static org.junit.Assert.*;
  *
  * @author Matthias Fussenegger
  */
-public class SelectionSortTest {
-
-    /**
-     * The list to be tested
-     */
-    private final List _list;
+public class SelectionSortTest implements TestableSort {
 
     @SuppressWarnings("unchecked")
     public SelectionSortTest() {
-        _list = new LinkedList<>();
-        _list.add(0);
-        _list.add(1);
-        _list.add(2);
-        _list.add(3);
-        _list.add(4);
-        _list.add(5);
-        _list.add(6);
-        _list.add(7);
-        _list.add(8);
-        _list.add(9);
+        addDefaultListValues();
     }
 
     @BeforeClass
@@ -77,10 +60,10 @@ public class SelectionSortTest {
     public void testSort_GenericType() {
         System.out.println("sort - SelectionSort");
         SelectionSort instance = new SelectionSort();
-        Collections.shuffle(_list);
-        Object[] values = _list.toArray();
+        Collections.shuffle(VALUES);
+        Object[] values = VALUES.toArray();
         instance.sort(values);
-        Object[] sortedValues = _list.toArray();
+        Object[] sortedValues = VALUES.toArray();
         Arrays.sort(sortedValues);
         assertArrayEquals(values, sortedValues);
     }
@@ -93,15 +76,15 @@ public class SelectionSortTest {
     public void testSort_GenericType_Comparator() {
         System.out.println("sort using comparator - SelectionSort");
         SelectionSort instance = new SelectionSort();
-        Collections.shuffle(_list);
-        Object[] values = _list.toArray();
+        Collections.shuffle(VALUES);
+        Object[] values = VALUES.toArray();
         Comparator c = (Comparator) (Object o1, Object o2) -> {
             Integer v1 = (Integer) o1;
             Integer v2 = (Integer) o2;
             return v2.compareTo(v1);
         };
         instance.sort(values, c);
-        Object[] sortedValues = _list.toArray();
+        Object[] sortedValues = VALUES.toArray();
         Arrays.sort(sortedValues, c);
         assertArrayEquals(values, sortedValues);
     }
