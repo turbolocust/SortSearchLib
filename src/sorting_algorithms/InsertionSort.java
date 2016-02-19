@@ -20,6 +20,8 @@ import java.util.Comparator;
 import algo_interfaces.InPlaceSort;
 
 /**
+ * Offers the Insertion-Sort algorithm to sort an array consisting of any type
+ * in ascending order or by using a specified {@code Comparator}
  *
  * @author Matthias Fussenegger
  */

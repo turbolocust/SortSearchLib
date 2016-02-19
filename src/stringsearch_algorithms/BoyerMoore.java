@@ -19,6 +19,9 @@ package stringsearch_algorithms;
 import algo_interfaces.SingleStringSearch;
 
 /**
+ * Offers the Boyer-Moore algorithm for finding the first occurrence of a
+ * {@code String} value (pattern) in the specified text. This implementation
+ * makes use of both, the bad-suffix and the good-suffix rule
  *
  * @author Matthias Fussenegger
  */

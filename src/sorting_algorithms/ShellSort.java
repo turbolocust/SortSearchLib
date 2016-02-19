@@ -20,6 +20,8 @@ import algo_interfaces.InPlaceSort;
 import java.util.Comparator;
 
 /**
+ * Offers the Shell-Sort algorithm to sort an array consisting of any type in
+ * ascending order or by using a specified {@code Comparator}
  *
  * @author Matthias Fussenegger
  */
@@ -34,7 +36,7 @@ public class ShellSort implements InPlaceSort {
             while (gap <= Math.ceil(values.length / 3)) {
                 gap *= 3 + 1;
             }
-            
+
             while (gap > 0) {
                 /*do insertion sort*/
                 for (int i = gap; i < values.length; ++i) {

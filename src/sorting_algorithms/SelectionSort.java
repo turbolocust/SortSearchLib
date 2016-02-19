@@ -20,6 +20,8 @@ import algo_interfaces.InPlaceSort;
 import java.util.Comparator;
 
 /**
+ * Offers the Selection-Sort algorithm to sort an array consisting of any type
+ * in ascending order or by using a specified {@code Comparator}
  *
  * @author Matthias Fussenegger
  */

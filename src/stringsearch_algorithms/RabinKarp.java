@@ -19,6 +19,8 @@ package stringsearch_algorithms;
 import algo_interfaces.SingleStringSearch;
 
 /**
+ * Offers the Rabin-Karp algorithm for finding the first occurrence of a
+ * {@code String} value (pattern) in the specified text
  *
  * @author Matthias Fussenegger
  */

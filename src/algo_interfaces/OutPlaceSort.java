@@ -20,6 +20,10 @@ import java.util.Comparator;
 import java.util.List;
 
 /**
+ * Implementing classes offer the functionality of sorting a {@code List}
+ * consisting of any type in ascending order or by using a specified
+ * {@code Comparator}. The sort will be processed Out-Order, meaning that the
+ * algorithm returns a sorted copy of the specified {@code List}
  *
  * @author Matthias Fussenegger
  */
@@ -39,7 +43,7 @@ public interface OutPlaceSort {
      *
      * @param <T> Generic type parameter
      * @param values A {@code List} consisting of elements of any type
-     * @param c The {@code Comparator} used for sorting the list elements
+     * @param c The {@code Comparator} used to sort the elements of the list
      * @return The sorted {@code List}
      */
     <T> List<T> sort(List<T> values, Comparator<? super T> c);

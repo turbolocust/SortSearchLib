@@ -3,7 +3,7 @@ A library that offers various sorting and string-search algorithms, including:
 <br>
 <p><b>Sorting algorithms:</b></p>
 <ul>
-  <li>Quicksort</li>
+  <li>Quick-Sort (single pivot)</li>
   <li>Bubble-Sort</li>
   <li>Insertion-Sort</li>
   <li>Selection-Sort</li>

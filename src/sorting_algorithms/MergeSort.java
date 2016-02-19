@@ -22,6 +22,8 @@ import java.util.Comparator;
 import java.util.List;
 
 /**
+ * Offers the traditional Merge-Sort algorithm to sort a {@code List} consisting
+ * of any type in ascending order or by using a specified {@code Comparator}
  *
  * @author Matthias Fussenegger
  */
@@ -73,7 +75,6 @@ public class MergeSort implements OutPlaceSort {
         while (!right.isEmpty()) {
             result.add(right.remove(0));
         }
-
         return result;
     }
 
@@ -124,7 +125,6 @@ public class MergeSort implements OutPlaceSort {
         while (!right.isEmpty()) {
             result.add(right.remove(0));
         }
-
         return result;
     }
 }
