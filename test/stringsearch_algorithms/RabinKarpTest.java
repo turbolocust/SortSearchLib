@@ -55,9 +55,9 @@ public class RabinKarpTest implements TestableSearch {
     public void testIndexOf() {
         System.out.println("indexOf - RabinKarp");
         char[] stack = TEXT.toCharArray();
-        String needle = "sit";
+        String needle = "gubergren";
         RabinKarp instance = new RabinKarp();
-        int expResult = 19;
+        int expResult = 230;
         long startTime = System.nanoTime();
         int result = instance.indexOf(stack, needle);
         System.out.println(System.nanoTime() - startTime);

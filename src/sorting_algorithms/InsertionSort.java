@@ -21,7 +21,7 @@ import algo_interfaces.InPlaceSort;
 
 /**
  * Offers the Insertion-Sort algorithm to sort an array consisting of any type
- * in ascending order or by using a specified {@code Comparator}
+ * in ascending order or by using a specified {@link Comparator}
  *
  * @author Matthias Fussenegger
  */

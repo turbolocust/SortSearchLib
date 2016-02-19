@@ -21,7 +21,7 @@ import java.util.Comparator;
 
 /**
  * Offers the Selection-Sort algorithm to sort an array consisting of any type
- * in ascending order or by using a specified {@code Comparator}
+ * in ascending order or by using a specified {@link Comparator}
  *
  * @author Matthias Fussenegger
  */

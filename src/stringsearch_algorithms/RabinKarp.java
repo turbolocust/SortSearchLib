@@ -20,7 +20,7 @@ import algo_interfaces.SingleStringSearch;
 
 /**
  * Offers the Rabin-Karp algorithm for finding the first occurrence of a
- * {@code String} value (pattern) in the specified text
+ * {@link String} value (pattern) in the specified text.
  *
  * @author Matthias Fussenegger
  */
@@ -50,12 +50,12 @@ public class RabinKarp implements SingleStringSearch {
      * and this calculated hash is used to compare the {@code patternHash} with
      * the current position in {@code text}
      *
-     * @param text The array containing {@code Characters}
+     * @param text The array containing {@link Character} values
      * @param offset The index to begin with
      * @param count The length of the sub-array
      * @return The hash of offset position to count in {@code text}
      */
-    private int hashFromText(char[] text, int offset, int count) {
+    protected int hashFromText(char[] text, int offset, int count) {
         return String.copyValueOf(text, offset, count).hashCode();
     }
 }

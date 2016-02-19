@@ -22,8 +22,8 @@ import java.util.Comparator;
 import java.util.List;
 
 /**
- * Offers the traditional Merge-Sort algorithm to sort a {@code List} consisting
- * of any type in ascending order or by using a specified {@code Comparator}
+ * Offers the traditional Merge-Sort algorithm to sort a {@link List} consisting
+ * of any type in ascending order or by using a specified {@link Comparator}
  *
  * @author Matthias Fussenegger
  */

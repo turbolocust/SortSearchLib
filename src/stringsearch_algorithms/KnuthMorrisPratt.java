@@ -20,7 +20,7 @@ import algo_interfaces.SingleStringSearch;
 
 /**
  * Offers the Knuth-Morris-Pratt algorithm for finding the first occurrence of a
- * {@code String} value (pattern) in the specified text
+ * {@link String} value (pattern) in the specified text
  *
  * @author Matthias Fussenegger
  */

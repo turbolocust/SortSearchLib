@@ -21,7 +21,7 @@ import java.util.Set;
 
 /**
  * Implementing classes offer the functionality of finding multiple
- * {@code String} values in a specified text
+ * {@link String} values in a specified text
  *
  * @author Matthias Fussenegger
  */
@@ -30,25 +30,26 @@ public interface MultiStringSearch {
     /**
      * Finds the occurrences of the patterns in the {@code stack}. This
      * implementation only works with patterns having a fixed size, so each
-     * pattern of the {@code Set} needs to have the same length, which is
+     * pattern of the {@link Set} needs to have the same length, which is
      * specified when calling this method. If the length does not match the
-     * length of at least one pattern in the {@code Set}, the results of this
+     * length of at least one pattern in the {@link Set}, the results of this
      * algorithm cannot be trusted
      *
      * @param text The text to be searched for the patterns
-     * @param patterns A {@code Set} of patterns to be found in the text
+     * @param patterns A {@link Set} of patterns to be found in the text
      * @param patternLength The fixed length of each pattern
-     * @return The positions of pattern occurrences in the text or {@code null}
-     * if no pattern is a substring of the text, meaning no match has been found
+     * @return The non-zero-indexed positions of pattern occurrences in the text
+     * or {@code null} if no pattern is a substring of the text, meaning no
+     * match has been found
      */
     List<Integer> indexOf(char[] text, Set<CharSequence> patterns, int patternLength);
 
     /**
-     * Converts a {@code List<Integer>} with occurrences to an array with
-     * primitive data types. The array has the same length as the {@code List}
+     * Converts a {@link List<Integer>} with occurrences to an array with
+     * primitive data types. The array has the same length as the {@link List}
      *
-     * @param list The {@code List} to be converted
-     * @return An array consisting of values of the {@code List}
+     * @param list The {@link List} to be converted
+     * @return An array consisting of values of the {@link List}
      */
     default int[] convertToArray(List<Integer> list) {
         if (list.size() > 0) {

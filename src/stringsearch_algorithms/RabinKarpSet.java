@@ -29,7 +29,7 @@ import java.util.Set;
  *
  * @author Matthias Fussenegger
  */
-public class RabinKarpSet implements MultiStringSearch {
+public final class RabinKarpSet extends RabinKarp implements MultiStringSearch {
 
     @Override
     public List<Integer> indexOf(char[] text, Set<CharSequence> patterns, int patternLength) {
@@ -45,30 +45,15 @@ public class RabinKarpSet implements MultiStringSearch {
             patternHashes.add(s.hashCode());
         });
 
-        int hash = hashFromText(text, 0, patternLength);
+        int hash = super.hashFromText(text, 0, patternLength);
         /*start searching the text for occurrences of patterns*/
         for (int i = 1; i <= text.length - patternLength; ++i) {
             if (patternHashes.contains(hash)
                     && patterns.contains(String.valueOf(text, i - 1, patternLength))) {
                 occurrences.add(i);
             }
-            hash = hashFromText(text, i, patternLength);
+            hash = super.hashFromText(text, i, patternLength);
         }
         return occurrences;
-    }
-
-    /**
-     * Calculates a hash from a specified {@code offset} to a maximum @code
-     * count} in {@code text}. This represents a sub-array of the original array
-     * and this calculated hash is used to compare values from the
-     * {@code patternHashes} with the current position in {@code text}
-     *
-     * @param text The array containing {@code Characters}
-     * @param offset The index to begin with
-     * @param count The length of the sub-array
-     * @return The hash of offset position to count in {@code text}
-     */
-    private int hashFromText(char[] text, int offset, int count) {
-        return String.copyValueOf(text, offset, count).hashCode();
     }
 }
