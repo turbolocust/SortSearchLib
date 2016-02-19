@@ -45,7 +45,7 @@ public interface MultiStringSearch {
     List<Integer> indexOf(char[] text, Set<CharSequence> patterns, int patternLength);
 
     /**
-     * Converts a {@link List<Integer>} with occurrences to an array with
+     * Converts a {@link List} with {@link Integer} occurrences to an array with
      * primitive data types. The array has the same length as the {@link List}
      *
      * @param list The {@link List} to be converted

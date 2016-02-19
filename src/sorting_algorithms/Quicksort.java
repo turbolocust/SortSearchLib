@@ -48,6 +48,7 @@ public final class Quicksort implements InPlaceSort {
      * @param <T> Generic type parameter
      * @param left The left boundary of the array
      * @param right The right boundary of the array
+     * @param values The array to be sorted
      * @param c The comparator used for sorting the array
      */
     private <T> void quicksortUsingComparator(int left, int right, Comparator<? super T> c, T[] values) {
@@ -64,6 +65,7 @@ public final class Quicksort implements InPlaceSort {
      *
      * @param <T> Generic type parameter
      * @param left The left boundary of the array
+     * @param values The array to be sorted
      * @param right The right boundary of the array
      */
     private <T> void quicksortComparable(int left, int right, T[] values) {
@@ -81,6 +83,7 @@ public final class Quicksort implements InPlaceSort {
      * @param left The left boundary of the array
      * @param right The right boundary of the array
      * @param c The comparator used for sorting the array
+     * @param values The array to be sorted
      * @return The new position of the pivot element
      */
     private <T> int divideUsingComparator(int left, int right, Comparator<? super T> c, T[] values) {
@@ -121,6 +124,7 @@ public final class Quicksort implements InPlaceSort {
      * @param <T> Generic type parameter
      * @param left The left boundary of the array
      * @param right The right boundary of the array
+     * @param values The array to be sorted
      * @return The new position of the pivot element
      */
     @SuppressWarnings("unchecked")
