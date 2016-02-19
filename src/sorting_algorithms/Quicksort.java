@@ -25,7 +25,7 @@ import algo_interfaces.InPlaceSort;
  *
  * @author Matthias Fussenegger
  */
-public class Quicksort implements InPlaceSort {
+public final class Quicksort implements InPlaceSort {
 
     @Override
     public <T> void sort(T[] values) {

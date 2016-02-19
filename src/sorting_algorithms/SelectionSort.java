@@ -25,7 +25,7 @@ import java.util.Comparator;
  *
  * @author Matthias Fussenegger
  */
-public class SelectionSort implements InPlaceSort {
+public final class SelectionSort implements InPlaceSort {
 
     @Override
     @SuppressWarnings("unchecked")

@@ -27,7 +27,7 @@ import java.util.List;
  *
  * @author Matthias Fussenegger
  */
-public class MergeSort implements OutPlaceSort {
+public final class MergeSort implements OutPlaceSort {
 
     @Override
     public <T> List<T> sort(List<T> list) {

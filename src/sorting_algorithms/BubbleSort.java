@@ -25,7 +25,7 @@ import algo_interfaces.InPlaceSort;
  *
  * @author Matthias Fussenegger
  */
-public class BubbleSort implements InPlaceSort {
+public final class BubbleSort implements InPlaceSort {
 
     @Override
     @SuppressWarnings("unchecked")
