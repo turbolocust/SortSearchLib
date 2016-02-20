@@ -28,19 +28,20 @@ import java.util.Set;
 public interface MultiStringSearch {
 
     /**
-     * Finds the occurrences of the patterns in the {@code stack}. This
+     * Finds the occurrences of the patterns in the specified {@code text}. This
      * implementation only works with patterns having a fixed size, so each
      * pattern of the {@link Set} needs to have the same length, which is
-     * specified when calling this method. If the length does not match the
-     * length of at least one pattern in the {@link Set}, the results of this
-     * algorithm cannot be trusted
+     * specified when calling this method.
+     *
+     * If the length does not match the length of at least one pattern in the
+     * {@link Set}, the results of this algorithm cannot be trusted
      *
      * @param text The text to be searched for the patterns
      * @param patterns A {@link Set} of patterns to be found in the text
      * @param patternLength The fixed length of each pattern
-     * @return The non-zero-indexed positions of pattern occurrences in the text
-     * or {@code null} if no pattern is a substring of the text, meaning no
-     * match has been found
+     * @return The zero-based positions of pattern occurrences in the text or
+     * {@code null} if no pattern is a substring of the text, meaning no match
+     * has been found
      */
     List<Integer> indexOf(char[] text, Set<CharSequence> patterns, int patternLength);
 

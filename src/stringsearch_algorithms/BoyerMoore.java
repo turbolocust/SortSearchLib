@@ -28,7 +28,7 @@ import algo_interfaces.SingleStringSearch;
 public class BoyerMoore implements SingleStringSearch {
 
     @Override
-    public int indexOf(char[] text, String pattern) {
+    public int indexOf(char[] text, CharSequence pattern) {
         if (text.length < 1 || pattern.length() < 1) {
             return 0;
         }
@@ -38,7 +38,7 @@ public class BoyerMoore implements SingleStringSearch {
         while (i < text.length) {
             for (j = pattern.length() - 1; pattern.charAt(j) == text[i]; --i, --j) {
                 if (j == 0) {
-                    return i + 1;
+                    return i;
                 }
             }
             i += Math.max(nextTable[pattern.length() - 1 - j], skipTable[text[i]]);
@@ -52,7 +52,7 @@ public class BoyerMoore implements SingleStringSearch {
      * @param pattern The pattern that is required for table creation
      * @return An array representing the skip table
      */
-    private int[] makeSkipTable(String pattern) {
+    private int[] makeSkipTable(CharSequence pattern) {
         final int ALPHABET = 256; //ASCII
         int[] table = new int[ALPHABET];
         for (int i = 0; i < table.length; ++i) {
@@ -70,7 +70,7 @@ public class BoyerMoore implements SingleStringSearch {
      * @param pattern The pattern that is required for table creation
      * @return An array representing the next table
      */
-    private int[] makeNextTable(String pattern) {
+    private int[] makeNextTable(CharSequence pattern) {
         int[] table = new int[pattern.length()];
         int lastPrefixPos = pattern.length();
         boolean isPrefix = true;
@@ -104,7 +104,7 @@ public class BoyerMoore implements SingleStringSearch {
      * @param pos The current position in the pattern
      * @return The length of the suffix
      */
-    private int suffixLength(String pattern, int pos) {
+    private int suffixLength(CharSequence pattern, int pos) {
         int len = 0;
         for (int i = pos, j = pattern.length() - 1;
                 i >= 0 && pattern.charAt(i) == pattern.charAt(j); --i, --j) {

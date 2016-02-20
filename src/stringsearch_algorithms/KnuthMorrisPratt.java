@@ -27,7 +27,7 @@ import algo_interfaces.SingleStringSearch;
 public class KnuthMorrisPratt implements SingleStringSearch {
 
     @Override
-    public int indexOf(char[] text, String pattern) {
+    public int indexOf(char[] text, CharSequence pattern) {
         if (text.length < 1 || pattern.length() < 1) {
             return 0;
         }
@@ -35,7 +35,7 @@ public class KnuthMorrisPratt implements SingleStringSearch {
         int[] prefixTable = makePrefixTable(pattern);
         int i = search(text, pattern, prefixTable);
 
-        return i + 1;
+        return i;
     }
 
     /**
@@ -44,7 +44,7 @@ public class KnuthMorrisPratt implements SingleStringSearch {
      * @param pattern The pattern that is required for table creation
      * @return An array representing the prefix table
      */
-    private int[] makePrefixTable(String pattern) {
+    private int[] makePrefixTable(CharSequence pattern) {
         int[] prefixTable = new int[pattern.length() + 1];
         prefixTable[0] = -1; //first element has to be -1
 
@@ -67,7 +67,7 @@ public class KnuthMorrisPratt implements SingleStringSearch {
      * @param prefixTable The previously generated prefix table
      * @return The position of the first occurrence in the text
      */
-    private int search(char[] text, String pattern, int[] prefixTable) {
+    private int search(char[] text, CharSequence pattern, int[] prefixTable) {
         int i = 0; //position in text
         int j = 0; //position in pattern
 

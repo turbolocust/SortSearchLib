@@ -57,7 +57,7 @@ public class BoyerMooreTest implements TestableSearch {
         char[] stack = TEXT.toCharArray();
         String needle = "sit";
         BoyerMoore instance = new BoyerMoore();
-        int expResult = 19;
+        int expResult = 18;
         long startTime = System.nanoTime();
         int result = instance.indexOf(stack, needle);
         System.out.println(System.nanoTime() - startTime);
