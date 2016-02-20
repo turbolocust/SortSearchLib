@@ -17,45 +17,71 @@
 package stringsearch_algorithms;
 
 import algo_interfaces.SingleStringSearch;
+import java.math.BigInteger;
+import java.util.Random;
 
 /**
  * Offers the Rabin-Karp algorithm for finding the first occurrence of a
- * {@link String} value (pattern) in the specified text.
+ * {@link String} value (pattern) in the specified text. See
+ * {@link https://en.wikipedia.org/wiki/Introduction_to_Algorithms} for more
+ * details regarding the implementation
  *
  * @author Matthias Fussenegger
  */
 public class RabinKarp implements SingleStringSearch {
 
-    @Override
-    public int indexOf(char[] text, String pattern) {
-        if (text.length < 1 || pattern.length() < 1) {
-            return 0;
-        }
-        int patternHash = pattern.hashCode();
-        int hash = hashFromText(text, 0, pattern.length());
-
-        /*start searching the text for occurrences of pattern*/
-        for (int i = 1; i <= text.length - pattern.length(); ++i) {
-            if (hash == patternHash) {
-                return i;
-            }
-            hash = hashFromText(text, i, pattern.length());
-        }
-        return NOT_FOUND;
-    }
+    /**
+     * A large probable 31-bit prime number
+     */
+    protected final long Q = randomPrime();
 
     /**
-     * Calculates a hash from a specified {@code offset} to a maximum @code
-     * count} in {@code text}. This represents a sub-array of the original array
-     * and this calculated hash is used to compare the {@code patternHash} with
-     * the current position in {@code text}
-     *
-     * @param text The array containing {@link Character} values
-     * @param offset The index to begin with
-     * @param count The length of the sub-array
-     * @return The hash of offset position to count in {@code text}
+     * Radix value for text mapping, depends on alphabet
      */
-    protected int hashFromText(char[] text, int offset, int count) {
-        return String.copyValueOf(text, offset, count).hashCode();
+    protected final int R = 256;
+
+    /**
+     * Calculates a random 31-bit prime number
+     *
+     * @return A random 31-bit prime number
+     */
+    private long randomPrime() {
+        BigInteger prime = BigInteger.probablePrime(31, new Random());
+        return prime.longValue();
+    }
+
+    @Override
+    public int indexOf(char[] text, CharSequence pattern) {
+        if (text.length < 1 || pattern.length() < 1) {
+            return NOT_FOUND;
+        }
+        long p = 0L; //decimal value of pattern
+        long t = 0L; //decimal value of text substring (of pattern length)
+        long h = 1L; //radix^(m-1) mod Q
+
+        /*pre-compute radix^(m-1) mod Q, where m is the pattern length*/
+        for (int i = 1; i < pattern.length(); ++i) {
+            h = (R * h) % Q;
+        }
+
+        /*preprocessing*/
+        for (int i = 0; i < pattern.length(); ++i) {
+            p = (R * p + pattern.charAt(i)) % Q;
+            t = (R * t + text[i]) % Q;
+        }
+
+        /*matching*/
+        for (int i = 0; i < text.length - pattern.length(); ++i) {
+            if (p == t) { //match found
+                if (pattern.equals(String.valueOf(text, i, pattern.length()))) {
+                    return i;
+                }
+            }
+            t = ((R * (t - text[i] * h)) + text[i + pattern.length()]) % Q;
+            if (t < 0) { //convert t in case it is negative
+                t += Q;
+            }
+        }
+        return NOT_FOUND;
     }
 }

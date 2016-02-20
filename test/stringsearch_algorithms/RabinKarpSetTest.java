@@ -30,22 +30,22 @@ import static org.junit.Assert.*;
  * @author Matthias Fussenegger
  */
 public class RabinKarpSetTest implements TestableSearch {
-    
+
     public RabinKarpSetTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
     }
-    
+
     @After
     public void tearDown() {
     }
@@ -63,12 +63,12 @@ public class RabinKarpSetTest implements TestableSearch {
         int patternLength = 3;
         int[] expectedResult = new int[6];
         /*used a small C-program to validate these results*/
-        expectedResult[0] = 19;
-        expectedResult[1] = 29;
-        expectedResult[2] = 287;
-        expectedResult[3] = 315;
-        expectedResult[4] = 325;
-        expectedResult[5] = 583;
+        expectedResult[0] = 18;
+        expectedResult[1] = 28;
+        expectedResult[2] = 286;
+        expectedResult[3] = 314;
+        expectedResult[4] = 324;
+        expectedResult[5] = 582;
         RabinKarpSet instance = new RabinKarpSet();
         long startTime = System.nanoTime();
         int[] result = instance.convertToArray(instance.indexOf(stack, patterns, patternLength));

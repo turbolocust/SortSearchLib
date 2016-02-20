@@ -57,7 +57,7 @@ public class RabinKarpTest implements TestableSearch {
         char[] stack = TEXT.toCharArray();
         String needle = "gubergren";
         RabinKarp instance = new RabinKarp();
-        int expResult = 230;
+        int expResult = 229;
         long startTime = System.nanoTime();
         int result = instance.indexOf(stack, needle);
         System.out.println(System.nanoTime() - startTime);
