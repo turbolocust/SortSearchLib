@@ -23,8 +23,8 @@ import java.util.Random;
 /**
  * Offers the Rabin-Karp algorithm for finding the first occurrence of a
  * {@link String} value (pattern) in the specified text. See
- * {@link https://en.wikipedia.org/wiki/Introduction_to_Algorithms} for more
- * details regarding the implementation
+ * <a href="https://en.wikipedia.org/wiki/Introduction_to_Algorithms">Introduction
+ * To Algorithms</a> for more details regarding the implementation
  *
  * @author Matthias Fussenegger
  */
