@@ -7,6 +7,7 @@ A library that offers various sorting and string-search algorithms, including:
   <li>Bubble-Sort</li>
   <li>Insertion-Sort</li>
   <li>Selection-Sort</li>
+  <li>Heap-Sort</li>
   <li>Shell-Sort (using Knuth-Sequence)</li>
   <li>Merge-Sort (Out-Place)</li>
 </ul>

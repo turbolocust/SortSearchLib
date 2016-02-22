@@ -29,7 +29,7 @@ import java.util.Comparator;
 public interface InPlaceSort {
 
     /**
-     * Sorts a specified array using the natural ordering of its elements in
+     * Sorts the specified array using the natural ordering of its elements in
      * ascending order
      *
      * @param <T> Generic type parameter
@@ -38,7 +38,7 @@ public interface InPlaceSort {
     <T> void sort(T[] values);
 
     /**
-     * Sorts a specified array using the a {@code Comparator}
+     * Sorts the specified array using the a {@code Comparator}
      *
      * @param <T> Generic type parameter
      * @param values An array consisting of elements of any type
