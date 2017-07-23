@@ -83,16 +83,14 @@ public class ShellSortTest implements TestableSort {
     public void testSort_Comparator() {
         System.out.println("sort using comparator - ShellSort");
         ShellSort instance = new ShellSort();
-        Object[] values = VALUES.toArray();
-        Comparator<Object> c = (Comparator<Object>) (Object o1, Object o2) -> {
-            Integer v1 = (Integer) o1;
-            Integer v2 = (Integer) o2;
-            return v2.compareTo(v1);
-        };
+        Integer[] values = new Integer[VALUES.size()];
+        values = VALUES.toArray(values);
+        Comparator<Integer> c = TestableSortUtils.createIntegerComparator();
         long startTime = System.nanoTime();
         instance.sort(values, c);
         System.out.println(System.nanoTime() - startTime);
-        Object[] sortedValues = VALUES.toArray();
+        Integer[] sortedValues = new Integer[VALUES.size()];
+        sortedValues = VALUES.toArray(sortedValues);
         Arrays.sort(sortedValues, c);
         assertArrayEquals(values, sortedValues);
     }

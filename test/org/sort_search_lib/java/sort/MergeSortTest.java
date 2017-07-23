@@ -78,11 +78,7 @@ public class MergeSortTest implements TestableSort {
     public void testSort_Comparator() {
         System.out.println("sort using comparator - MergeSort");
         MergeSort instance = new MergeSort();
-        Comparator<Object> c = (Comparator<Object>) (Object o1, Object o2) -> {
-            Integer v1 = (Integer) o1;
-            Integer v2 = (Integer) o2;
-            return v2.compareTo(v1);
-        };
+        Comparator<Integer> c = TestableSortUtils.createIntegerComparator();
         long startTime = System.nanoTime();
         List<Integer> result = instance.sort(VALUES, c);
         System.out.println(System.nanoTime() - startTime);

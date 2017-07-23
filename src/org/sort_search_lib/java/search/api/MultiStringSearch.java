@@ -52,25 +52,4 @@ public interface MultiStringSearch {
      */
     List<Integer> indexOf(char[] text, Set<CharSequence> patterns, int patternLength);
 
-    /**
-     * Converts a {@link List} with {@link Integer} occurrences to an array with
-     * primitive data types. The array has the same length as the {@link List}.
-     *
-     * @param list the {@link List} to be converted.
-     * @return an array consisting of values of the {@link List}.
-     */
-    default int[] convertToArray(List<Integer> list) {
-        if (list.size() > 0) {
-            int[] occurrences = new int[list.size()];
-            int i = 0;
-            /*copy each list entry to array*/
-            for (Integer pos : list) {
-                occurrences[i] = pos;
-                ++i;
-            }
-            return occurrences;
-        } else {
-            return null;
-        }
-    }
 }

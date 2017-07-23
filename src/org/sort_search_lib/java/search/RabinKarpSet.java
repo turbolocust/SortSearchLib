@@ -48,9 +48,9 @@ public final class RabinKarpSet extends RabinKarp implements MultiStringSearch {
 
         Set<Long> patternHashes = new HashSet<>();
         /*calculate hash for each pattern*/
-        patterns.stream().forEach((s) -> {
-            patternHashes.add(hash(s));
-        });
+        for (CharSequence pattern : patterns) {
+            patternHashes.add(hash(pattern));
+        }
 
         long t = 0L; // decimal value of text substring (of pattern length)
         long h = 1L; // radix^(m-1) mod Q

@@ -23,10 +23,7 @@
  */
 package org.sort_search_lib.java.sort;
 
-import java.util.Collections;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Random;
 
 /**
  *
@@ -37,17 +34,7 @@ public interface TestableSort {
     /**
      * List with random values to be tested.
      */
-    List<Integer> VALUES = generateRandomIntegerList(1024);
-
-    static List<Integer> generateRandomIntegerList(int size) {
-        List<Integer> values = new LinkedList<>();
-        Random rand = new Random();
-        for (int i = 0; i < size; ++i) {
-            values.add(rand.nextInt());
-        }
-        Collections.shuffle(values, new Random());
-        return values;
-    }
+    List<Integer> VALUES = TestableSortUtils.generateRandomIntegerList(1024);
 
     void testSort();
 

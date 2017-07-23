@@ -24,6 +24,7 @@
 package org.sort_search_lib.java.search;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -79,8 +80,30 @@ public class RabinKarpSetTest implements TestableSearch {
         expectedResult[5] = 582;
         RabinKarpSet instance = new RabinKarpSet();
         long startTime = System.nanoTime();
-        int[] result = instance.convertToArray(instance.indexOf(stack, patterns, patternLength));
+        int[] result = convertToArray(instance.indexOf(stack, patterns, patternLength));
         System.out.println(System.nanoTime() - startTime);
         assertArrayEquals(expectedResult, result);
+    }
+
+    /**
+     * Converts a {@link List} with {@link Integer} occurrences to an array with
+     * primitive data types. The array has the same length as the {@link List}.
+     *
+     * @param list the {@link List} to be converted.
+     * @return an array consisting of values of the {@link List}.
+     */
+    private static int[] convertToArray(List<Integer> list) {
+        if (list.size() > 0) {
+            int[] occurrences = new int[list.size()];
+            int i = 0;
+            /*copy each list entry to array*/
+            for (Integer pos : list) {
+                occurrences[i] = pos;
+                ++i;
+            }
+            return occurrences;
+        } else {
+            return null;
+        }
     }
 }
