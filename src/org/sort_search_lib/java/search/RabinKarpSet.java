@@ -52,8 +52,8 @@ public final class RabinKarpSet extends RabinKarp implements MultiStringSearch {
             patternHashes.add(hash(s));
         });
 
-        long t = 0L; //decimal value of text substring (of pattern length)
-        long h = 1L; //radix^(m-1) mod Q
+        long t = 0L; // decimal value of text substring (of pattern length)
+        long h = 1L; // radix^(m-1) mod Q
 
         /*pre-compute radix^(m-1) mod Q, where m is the pattern length*/
         for (int i = 1; i < patternLength; ++i) {
@@ -67,13 +67,13 @@ public final class RabinKarpSet extends RabinKarp implements MultiStringSearch {
 
         /*matching*/
         for (int i = 0; i < text.length - patternLength; ++i) {
-            if (patternHashes.contains(t)) { //match found
+            if (patternHashes.contains(t)) { // match found
                 if (patterns.contains(String.valueOf(text, i, patternLength))) {
                     occurrences.add(i);
                 }
             }
             t = ((R * (t - text[i] * h)) + text[i + patternLength]) % Q;
-            if (t < 0) { //convert t in case it is negative
+            if (t < 0) { // convert t in case it is negative
                 t += Q;
             }
         }
@@ -83,8 +83,8 @@ public final class RabinKarpSet extends RabinKarp implements MultiStringSearch {
     /**
      * Pre-computes a hash value of the specified {@code pattern}.
      *
-     * @param pattern The pattern of which a hash will be computed.
-     * @return The computed hash value of the pattern.
+     * @param pattern the pattern of which a hash will be computed.
+     * @return the computed hash value of the pattern.
      */
     private long hash(CharSequence pattern) {
         long p = 0L;

@@ -52,10 +52,10 @@ public final class HeapSort implements InPlaceSort {
     /**
      * Restores the heap condition by the natural ordering of its elements.
      *
-     * @param <T> Generic type parameter.
-     * @param values A reference to the array that is to be sorted.
-     * @param end The size of {@code values}, which is the heap.
-     * @param parent The current index of the parent node.
+     * @param <T> type of the array elements.
+     * @param values reference to the array that is to be sorted.
+     * @param end the size of {@code values}, which is the heap.
+     * @param parent the current index of the parent node.
      */
     @SuppressWarnings("unchecked")
     private <T> void siftDownComparable(T[] values, int end, int parent) {
@@ -63,7 +63,7 @@ public final class HeapSort implements InPlaceSort {
         while (parent * 2 + 1 < end) {
             if (child + 1 < end) {
                 if (((Comparable<? super T>) values[child + 1]).compareTo(values[child]) > 0) {
-                    ++child; //right child is larger than left one
+                    ++child; // right child is larger than left one
                 }
             }
             /*swawp if child is larger than its parent*/
@@ -95,18 +95,18 @@ public final class HeapSort implements InPlaceSort {
     /**
      * Restores the heap condition by using the specified {@link Comparator}
      *
-     * @param <T> Generic type parameter
-     * @param values A reference to the array that is to be sorted
-     * @param end The size of {@code values}, which is the heap
-     * @param parent The current index of the parent node
-     * @param c The {@link Comparator} used to compare the elements
+     * @param <T> type of the array elements.
+     * @param values reference to the array that is to be sorted
+     * @param end the size of {@code values}, which is the heap
+     * @param parent the current index of the parent node
+     * @param c the {@link Comparator} used to compare the elements
      */
     private <T> void siftDownUsingComparator(T[] values, int end, int parent, Comparator<? super T> c) {
         int child = parent * 2 + 1;
         while (parent * 2 + 1 < end) {
             if (child + 1 < end) {
                 if (c.compare(values[child + 1], values[child]) > 0) {
-                    ++child; //right child is larger than left one
+                    ++child; // right child is larger than left one
                 }
             }
             /*swawp if child is larger than its parent*/
@@ -123,10 +123,10 @@ public final class HeapSort implements InPlaceSort {
     /**
      * Swaps two elements of the specified array
      *
-     * @param <T> Generic type parameter
-     * @param values The array of which to swap elements
-     * @param i The index of the first element that will be swapped
-     * @param j The index of the second element that will be swapped
+     * @param <T> type of the array elements.
+     * @param values the array of which to swap elements
+     * @param i the index of the first element that will be swapped
+     * @param j the index of the second element that will be swapped
      */
     private <T> void swap(T[] values, int i, int j) {
         T temp = values[j];

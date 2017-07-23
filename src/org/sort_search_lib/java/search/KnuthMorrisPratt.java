@@ -48,8 +48,8 @@ public class KnuthMorrisPratt implements SingleStringSearch {
     /**
      * Calculation of the prefix table.
      *
-     * @param pattern The pattern that is required for table creation.
-     * @return An array representing the prefix table.
+     * @param pattern the pattern that is required for table creation.
+     * @return an array representing the prefix table.
      */
     private int[] makePrefixTable(CharSequence pattern) {
         int[] prefixTable = new int[pattern.length() + 1];
@@ -69,10 +69,10 @@ public class KnuthMorrisPratt implements SingleStringSearch {
     /**
      * The actual search of the beginning of the pattern in the text.
      *
-     * @param text The text to be searched for pattern.
-     * @param pattern The pattern to be found in text.
-     * @param prefixTable The previously generated prefix table.
-     * @return The position of the first occurrence in the text.
+     * @param text the text to be searched for pattern.
+     * @param pattern the pattern to be found in text.
+     * @param prefixTable the previously generated prefix table.
+     * @return the position of the first occurrence in the text.
      */
     private int search(char[] text, CharSequence pattern, int[] prefixTable) {
         int i = 0; //position in text

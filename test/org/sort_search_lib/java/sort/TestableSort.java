@@ -37,7 +37,7 @@ public interface TestableSort {
     /**
      * List with random values to be tested.
      */
-    List<Integer> VALUES = generateRandomIntegerList(999);
+    List<Integer> VALUES = generateRandomIntegerList(1024);
 
     static List<Integer> generateRandomIntegerList(int size) {
         List<Integer> values = new LinkedList<>();

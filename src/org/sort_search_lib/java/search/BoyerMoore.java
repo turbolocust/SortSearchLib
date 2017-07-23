@@ -56,8 +56,8 @@ public class BoyerMoore implements SingleStringSearch {
     /**
      * Calculation of the skip table ("bad rule").
      *
-     * @param pattern The pattern that is required for table creation.
-     * @return An array representing the skip table.
+     * @param pattern the pattern that is required for table creation.
+     * @return an array representing the skip table.
      */
     private int[] makeSkipTable(CharSequence pattern) {
         final int ALPHABET = 256; //ASCII
@@ -74,8 +74,8 @@ public class BoyerMoore implements SingleStringSearch {
     /**
      * Calculation of the next table ("good rule").
      *
-     * @param pattern The pattern that is required for table creation.
-     * @return An array representing the next table.
+     * @param pattern the pattern that is required for table creation.
+     * @return an array representing the next table.
      */
     private int[] makeNextTable(CharSequence pattern) {
         int[] table = new int[pattern.length()];
@@ -107,9 +107,9 @@ public class BoyerMoore implements SingleStringSearch {
      * Returns the maximum length of the pattern that ends at {@code pos}. To
      * put it more generally: Returns the suffix length of the pattern.
      *
-     * @param pattern The pattern that is required to determine suffix length.
-     * @param pos The current position in the pattern.
-     * @return The length of the suffix.
+     * @param pattern the pattern that is required to determine suffix length.
+     * @param pos the current position in the pattern.
+     * @return the length of the suffix.
      */
     private int suffixLength(CharSequence pattern, int pos) {
         int len = 0;

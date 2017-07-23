@@ -50,7 +50,7 @@ public class RabinKarp implements SingleStringSearch {
     /**
      * Calculates a random 31-bit prime number.
      *
-     * @return A random 31-bit prime number.
+     * @return random 31-bit prime number.
      */
     private long randomPrime() {
         BigInteger prime = BigInteger.probablePrime(31, new Random());
@@ -63,9 +63,9 @@ public class RabinKarp implements SingleStringSearch {
                 || text.length < 1 || pattern.length() < 1) {
             return NOT_FOUND;
         }
-        long p = 0L; //decimal value of pattern
-        long t = 0L; //decimal value of text substring (of pattern length)
-        long h = 1L; //radix^(m-1) mod Q
+        long p = 0L; // decimal value of pattern
+        long t = 0L; // decimal value of text substring (of pattern length)
+        long h = 1L; // radix^(m-1) mod Q
 
         /*pre-compute radix^(m-1) mod Q, where m is the pattern length*/
         for (int i = 1; i < pattern.length(); ++i) {
@@ -80,13 +80,13 @@ public class RabinKarp implements SingleStringSearch {
 
         /*matching*/
         for (int i = 0; i < text.length - pattern.length(); ++i) {
-            if (p == t) { //match found
+            if (p == t) { // match found
                 if (pattern.equals(String.valueOf(text, i, pattern.length()))) {
                     return i;
                 }
             }
             t = ((R * (t - text[i] * h)) + text[i + pattern.length()]) % Q;
-            if (t < 0) { //convert t in case it is negative
+            if (t < 0) { // convert t in case it is negative
                 t += Q;
             }
         }

@@ -48,9 +48,9 @@ public final class MergeSort implements OutPlaceSort {
 
         /*divide list into equal-sized sublists*/
         for (int i = 0; i < list.size(); ++i) {
-            if (i % 2 != 0) { //odd
+            if (i % 2 != 0) { // odd
                 left.add(list.get(i));
-            } else { //even
+            } else { // even
                 right.add(list.get(i));
             }
         }
@@ -97,9 +97,9 @@ public final class MergeSort implements OutPlaceSort {
 
         /*divide list into equal-sized sublists*/
         for (int i = 0; i < list.size(); ++i) {
-            if (i % 2 != 0) { //odd
+            if (i % 2 != 0) { // odd
                 left.add(list.get(i));
-            } else { //even
+            } else { // even
                 right.add(list.get(i));
             }
         }
