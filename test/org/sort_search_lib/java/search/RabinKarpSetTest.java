@@ -66,7 +66,7 @@ public class RabinKarpSetTest implements TestableSearch {
     public void testIndexOf() {
         System.out.println("indexOf - RabinKarpSet");
         char[] stack = TEXT.toCharArray();
-        Set<CharSequence> patterns = new HashSet<>();
+        Set<CharSequence> patterns = new HashSet<CharSequence>();
         patterns.add("sit");
         patterns.add("con");
         int patternLength = 3;

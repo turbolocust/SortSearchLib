@@ -36,7 +36,7 @@ import java.util.Random;
 public class TestableSortUtils {
 
     static List<Integer> generateRandomIntegerList(int size) {
-        List<Integer> values = new LinkedList<>();
+        List<Integer> values = new LinkedList<Integer>();
         Random rand = new Random();
         for (int i = 0; i < size; ++i) {
             values.add(rand.nextInt());

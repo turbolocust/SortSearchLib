@@ -44,9 +44,9 @@ public final class RabinKarpSet extends RabinKarp implements MultiStringSearch {
                 || text.length < 1 || text.length < patternLength) {
             return null;
         }
-        List<Integer> occurrences = new LinkedList<>();
+        List<Integer> occurrences = new LinkedList<Integer>();
 
-        Set<Long> patternHashes = new HashSet<>();
+        Set<Long> patternHashes = new HashSet<Long>();
         /*calculate hash for each pattern*/
         for (CharSequence pattern : patterns) {
             patternHashes.add(hash(pattern));
