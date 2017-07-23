@@ -34,7 +34,7 @@ public interface TestableSort {
     /**
      * List with random values to be tested.
      */
-    List<Integer> VALUES = TestableSortUtils.generateRandomIntegerList(1024);
+    List<Integer> VALUES = TestableSortUtils.generateRandomIntegerList(8192);
 
     void testSort();
 

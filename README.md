@@ -3,7 +3,8 @@ A library that offers various sorting and string-search algorithms, including:
 <br>
 <p><b>Sorting algorithms:</b></p>
 <ul>
-  <li>Quick-Sort (single pivot)</li>
+  <li>Quicksort (single pivot)</li>
+  <li>Dual-Pivot Quicksort</li>
   <li>Bubble-Sort</li>
   <li>Insertion-Sort</li>
   <li>Selection-Sort</li>
@@ -20,4 +21,4 @@ A library that offers various sorting and string-search algorithms, including:
 </ul>
 <br>
 <i>All sorting algorithms support the use of a comparator.<br>
-This library requires Java 1.8 (Java 8).</i>
+This library requires at least Java 7 (Java 1.7).</i>

@@ -64,4 +64,29 @@ public final class InsertionSort implements InPlaceSort {
             }
         }
     }
+
+    @SuppressWarnings("unchecked")
+    <T> void sort(T[] values, int left, int right) {
+        for (int i = left + 1; i <= right; ++i) {
+            T temp = values[i];
+            int j = i;
+            while (j > left && ((Comparable<? super T>) values[j - 1]).compareTo(temp) > 0) {
+                values[j] = values[j - 1];
+                --j;
+            }
+            values[j] = temp;
+        }
+    }
+
+    <T> void sort(T[] values, int left, int right, Comparator<? super T> c) {
+        for (int i = left + 1; i <= right; ++i) {
+            T temp = values[i];
+            int j = i;
+            while (j > left && (c.compare(values[j - 1], temp) > 0)) {
+                values[j] = values[j - 1];
+                --j;
+            }
+            values[j] = temp;
+        }
+    }
 }
