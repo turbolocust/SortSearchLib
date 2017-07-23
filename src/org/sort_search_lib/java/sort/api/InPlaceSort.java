@@ -21,38 +21,36 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.sort_search_lib.java.sort.interfaces;
+package org.sort_search_lib.java.sort.api;
 
 import java.util.Comparator;
-import java.util.List;
 
 /**
- * Implementing classes offer the functionality of sorting a {@link List}
- * consisting of any type in ascending order or by using a specified
- * {@link Comparator}. The sort will be processed Out-Order, meaning that the
- * algorithm returns a sorted copy of the specified {@link List}.
+ * Implementing classes offer the functionality of sorting an array consisting
+ * of any type in ascending order or by using a specified {@code Comparator}.
+ * The sort will be processed In-Order, meaning that the algorithm works on the
+ * specified array itself, without making a copy of it.
  *
  * @author Matthias Fussenegger
  */
-public interface OutPlaceSort {
+public interface InPlaceSort {
 
     /**
-     * Sorts a {@link List} using the natural ordering of its elements.
+     * Sorts the specified array using the natural ordering of its elements in
+     * ascending order.
      *
-     * @param <T> Generic type parameter.
-     * @param values A {@link List} consisting of elements of any type.
-     * @return The sorted {@link List}.
+     * @param <T> type of the array elements.
+     * @param values an array consisting of elements of any type.
      */
-    <T> List<T> sort(List<T> values);
+    <T> void sort(T[] values);
 
     /**
-     * Sorts a {@link List} using the specified {@link Comparator}.
+     * Sorts the specified array using the a {@code Comparator}.
      *
-     * @param <T> Generic type parameter.
-     * @param values A {@link List} consisting of elements of any type.
-     * @param c The {@link Comparator} used to sort the elements of the list.
-     * @return The sorted {@link List}.
+     * @param <T> type of the array elements.
+     * @param values an array consisting of elements of any type.
+     * @param c the {@code Comparator} used to sort the elements of the array.
      */
-    <T> List<T> sort(List<T> values, Comparator<? super T> c);
+    <T> void sort(T[] values, Comparator<? super T> c);
 
 }

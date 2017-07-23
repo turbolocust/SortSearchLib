@@ -24,7 +24,7 @@
 package org.sort_search_lib.java.sort;
 
 import java.util.Comparator;
-import org.sort_search_lib.java.sort.interfaces.InPlaceSort;
+import org.sort_search_lib.java.sort.api.InPlaceSort;
 
 /**
  * Offers the Bubble-Sort algorithm to sort an array consisting of any type in

@@ -23,7 +23,7 @@
  */
 package org.sort_search_lib.java.search;
 
-import org.sort_search_lib.java.search.interfaces.SingleStringSearch;
+import org.sort_search_lib.java.search.api.SingleStringSearch;
 
 /**
  * Offers the Boyer-Moore algorithm for finding the first occurrence of a

@@ -24,7 +24,7 @@
 package org.sort_search_lib.java.sort;
 
 import java.util.Comparator;
-import org.sort_search_lib.java.sort.interfaces.InPlaceSort;
+import org.sort_search_lib.java.sort.api.InPlaceSort;
 
 /**
  * Offers the Heap-Sort algorithm to sort a zero-based array consisting of any

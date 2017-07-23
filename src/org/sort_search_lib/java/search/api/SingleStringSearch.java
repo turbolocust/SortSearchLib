@@ -21,36 +21,29 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.sort_search_lib.java.sort.interfaces;
-
-import java.util.Comparator;
+package org.sort_search_lib.java.search.api;
 
 /**
- * Implementing classes offer the functionality of sorting an array consisting
- * of any type in ascending order or by using a specified {@code Comparator}.
- * The sort will be processed In-Order, meaning that the algorithm works on the
- * specified array itself, without making a copy of it.
+ * Implementing classes offer the functionality of finding the first occurrence
+ * of a {@link String} value (pattern) in the specified text.
  *
  * @author Matthias Fussenegger
  */
-public interface InPlaceSort {
+public interface SingleStringSearch {
 
     /**
-     * Sorts the specified array using the natural ordering of its elements in
-     * ascending order.
-     *
-     * @param <T> Generic type parameter.
-     * @param values An array consisting of elements of any type.
+     * Indicates that the specified pattern has not been found.
      */
-    <T> void sort(T[] values);
+    int NOT_FOUND = -1;
 
     /**
-     * Sorts the specified array using the a {@code Comparator}.
+     * Finds the first occurrence of the pattern in the specified {@code text}.
      *
-     * @param <T> Generic type parameter.
-     * @param values An array consisting of elements of any type.
-     * @param c The {@code Comparator} used to sort the elements of the array.
+     * @param text the text to be searched for pattern.
+     * @param pattern the pattern to be found in the text.
+     * @return the zero-based position of the first occurrence in the text or a
+     * negative {@link Integer} if the pattern is not a substring of the text.
      */
-    <T> void sort(T[] values, Comparator<? super T> c);
+    int indexOf(char[] text, CharSequence pattern);
 
 }

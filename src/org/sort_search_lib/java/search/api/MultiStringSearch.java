@@ -21,7 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.sort_search_lib.java.search.interfaces;
+package org.sort_search_lib.java.search.api;
 
 import java.util.List;
 import java.util.Set;
@@ -43,10 +43,10 @@ public interface MultiStringSearch {
      * If the length does not match the length of at least one pattern in the
      * {@link Set}, the results of this algorithm cannot be trusted.
      *
-     * @param text The text to be searched for the patterns.
-     * @param patterns A {@link Set} of patterns to be found in the text.
-     * @param patternLength The fixed length of each pattern.
-     * @return The zero-based positions of pattern occurrences in the text or
+     * @param text the text to be searched for the patterns.
+     * @param patterns {@link Set} of patterns to be found in the text.
+     * @param patternLength the fixed length of each pattern.
+     * @return the zero-based positions of pattern occurrences in the text or
      * {@code null} if no pattern is a substring of the text, meaning no match
      * has been found.
      */
@@ -56,8 +56,8 @@ public interface MultiStringSearch {
      * Converts a {@link List} with {@link Integer} occurrences to an array with
      * primitive data types. The array has the same length as the {@link List}.
      *
-     * @param list The {@link List} to be converted.
-     * @return An array consisting of values of the {@link List}.
+     * @param list the {@link List} to be converted.
+     * @return an array consisting of values of the {@link List}.
      */
     default int[] convertToArray(List<Integer> list) {
         if (list.size() > 0) {

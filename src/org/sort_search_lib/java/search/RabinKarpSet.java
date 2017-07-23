@@ -23,7 +23,7 @@
  */
 package org.sort_search_lib.java.search;
 
-import org.sort_search_lib.java.search.interfaces.MultiStringSearch;
+import org.sort_search_lib.java.search.api.MultiStringSearch;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;

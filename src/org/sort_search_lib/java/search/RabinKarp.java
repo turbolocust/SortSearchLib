@@ -23,7 +23,7 @@
  */
 package org.sort_search_lib.java.search;
 
-import org.sort_search_lib.java.search.interfaces.SingleStringSearch;
+import org.sort_search_lib.java.search.api.SingleStringSearch;
 import java.math.BigInteger;
 import java.util.Random;
 

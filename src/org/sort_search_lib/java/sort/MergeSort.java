@@ -23,7 +23,7 @@
  */
 package org.sort_search_lib.java.sort;
 
-import org.sort_search_lib.java.sort.interfaces.OutPlaceSort;
+import org.sort_search_lib.java.sort.api.OutPlaceSort;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
