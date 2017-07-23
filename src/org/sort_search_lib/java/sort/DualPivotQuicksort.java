@@ -27,6 +27,8 @@ import java.util.Comparator;
 import org.sort_search_lib.java.sort.api.InPlaceSort;
 
 /**
+ * Offers the Quick-Sort algorithm (dual pivot) to sort an array consisting of
+ * any type in ascending order or by using a specified Comparator.
  *
  * @author Matthias Fussenegger
  */
