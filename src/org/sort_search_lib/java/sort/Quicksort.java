@@ -37,26 +37,50 @@ public final class Quicksort implements InPlaceSort {
     @Override
     public <T> void sort(T[] values) {
         if (values != null && values.length > 1) {
-            quicksortComparable(0, values.length - 1, values);
+            if (!insertionSortTinyArray(values, null)) {
+                quicksortComparable(0, values.length - 1, values);
+            }
         }
     }
 
     @Override
     public <T> void sort(T[] values, Comparator<? super T> c) {
         if (values != null && values.length > 1) {
-            quicksortUsingComparator(0, values.length - 1, c, values);
+            if (!insertionSortTinyArray(values, c)) {
+                quicksortUsingComparator(0, values.length - 1, c, values);
+            }
         }
+    }
+
+    /**
+     * Performs an insertion sort for tiny arrays ({@code < 27}).
+     *
+     * @param <T> type of the array elements.
+     * @param values the array to be sorted.
+     * @param c the comparator used for sorting the array.
+     * @return true if insertion sort was performed, false otherwise.
+     */
+    private <T> boolean insertionSortTinyArray(T[] values, Comparator<? super T> c) {
+        if (values.length < 27) {
+            if (c != null) {
+                new InsertionSort().sort(values, c);
+            } else {
+                new InsertionSort().sort(values);
+            }
+            return true;
+        }
+        return false;
     }
 
     /**
      * Main method for recursive call of Quicksort-algorithm using the specified
      * comparator for sorting the elements in the array.
      *
-     * @param <T> Generic type parameter.
-     * @param left The left boundary of the array.
-     * @param right The right boundary of the array.
-     * @param values The array to be sorted.
-     * @param c The comparator used for sorting the array.
+     * @param <T> type of the array elements.
+     * @param left the left boundary of the array.
+     * @param right the right boundary of the array.
+     * @param values the array to be sorted.
+     * @param c the comparator used for sorting the array.
      */
     private <T> void quicksortUsingComparator(int left, int right, Comparator<? super T> c, T[] values) {
         if (left < right) {
@@ -70,10 +94,10 @@ public final class Quicksort implements InPlaceSort {
      * Main method for recursive call of Quicksort-algorithm using the natural
      * ordering of the array elements for sorting.
      *
-     * @param <T> Generic type parameter.
-     * @param left The left boundary of the array.
-     * @param values The array to be sorted.
-     * @param right The right boundary of the array.
+     * @param <T> type of the array elements.
+     * @param left the left boundary of the array.
+     * @param values the array to be sorted.
+     * @param right the right boundary of the array.
      */
     private <T> void quicksortComparable(int left, int right, T[] values) {
         if (left < right) {
@@ -86,16 +110,16 @@ public final class Quicksort implements InPlaceSort {
     /**
      * The division/partition method used by {@code quicksortComparator}.
      *
-     * @param <T> Generic type parameter.
-     * @param left The left boundary of the array.
-     * @param right The right boundary of the array.
-     * @param c The comparator used for sorting the array.
-     * @param values The array to be sorted.
-     * @return The new position of the pivot element.
+     * @param <T> type of the array elements.
+     * @param left the left boundary of the array.
+     * @param right the right boundary of the array.
+     * @param c the comparator used for sorting the array.
+     * @param values the array to be sorted.
+     * @return the new position of the pivot element.
      */
     private <T> int divideUsingComparator(int left, int right, Comparator<? super T> c, T[] values) {
         int i = left;
-        int j = right - 1; //element to the left of pivot
+        int j = right - 1; // element to the left of pivot
         T pivot = values[right];
 
         do {
@@ -109,10 +133,8 @@ public final class Quicksort implements InPlaceSort {
                 --j;
             }
 
-            if (i < j) { //swap
-                T temp = values[i];
-                values[i] = values[j];
-                values[j] = temp;
+            if (i < j) { // swap
+                swap(values, i, j);
             }
         } while (i < j);
 
@@ -122,22 +144,22 @@ public final class Quicksort implements InPlaceSort {
             values[i] = values[right];
             values[right] = temp;
         }
-        return i; //return position of pivot
+        return i; // return position of pivot
     }
 
     /**
      * The division/partition method used by {@code quicksortComparator}.
      *
-     * @param <T> Generic type parameter.
-     * @param left The left boundary of the array.
-     * @param right The right boundary of the array.
-     * @param values The array to be sorted.
-     * @return The new position of the pivot element.
+     * @param <T> type of the array elements.
+     * @param left the left boundary of the array.
+     * @param right the right boundary of the array.
+     * @param values the array to be sorted.
+     * @return the new position of the pivot element.
      */
     @SuppressWarnings("unchecked")
     private <T> int divideComparable(int left, int right, T[] values) {
         int i = left;
-        int j = right - 1; //element to the left of pivot
+        int j = right - 1; // element to the left of pivot
         T pivot = values[right];
 
         do {
@@ -153,10 +175,8 @@ public final class Quicksort implements InPlaceSort {
                 --j;
             }
 
-            if (i < j) { //swap
-                T temp = values[i];
-                values[i] = values[j];
-                values[j] = temp;
+            if (i < j) { // swap
+                swap(values, i, j);
             }
         } while (i < j);
 
@@ -166,6 +186,20 @@ public final class Quicksort implements InPlaceSort {
             values[i] = values[right];
             values[right] = temp;
         }
-        return i; //return position of pivot
+        return i; // return position of pivot
+    }
+
+    /**
+     * Swaps two elements of the specified array
+     *
+     * @param <T> type of the array elements.
+     * @param values the array of which to swap elements
+     * @param i the index of the first element that will be swapped
+     * @param j the index of the second element that will be swapped
+     */
+    private <T> void swap(T[] values, int i, int j) {
+        T temp = values[j];
+        values[j] = values[i];
+        values[i] = temp;
     }
 }

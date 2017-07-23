@@ -93,4 +93,43 @@ public class QuicksortTest implements TestableSort {
         assertArrayEquals(values, sortedValues);
     }
 
+    /**
+     * Test of sort method, of class Quicksort with tiny array.
+     */
+    @Test
+    public void testSort_TinyArray() {
+        System.out.println("sort - QUICKSORT - Tiny Array");
+        Quicksort instance = new Quicksort();
+        Object[] initialValues = TestableSort.generateRandomIntegerList(26).toArray();
+        Object[] values = Arrays.copyOf(initialValues, initialValues.length);
+        long startTime = System.nanoTime();
+        instance.sort(values);
+        System.out.println(System.nanoTime() - startTime);
+        Object[] sortedValues = initialValues;
+        Arrays.sort(sortedValues);
+        assertArrayEquals(values, sortedValues);
+    }
+
+    /**
+     * Test of sort method, of class Quicksort with tiny array.
+     */
+    @Test
+    public void testSort_Comparator_TinyArray() {
+        System.out.println("sort using comparator - Quicksort - Tiny Array");
+        Quicksort instance = new Quicksort();
+        Object[] initialValues = TestableSort.generateRandomIntegerList(26).toArray();
+        Object[] values = Arrays.copyOf(initialValues, initialValues.length);
+        Comparator<Object> c = (Comparator<Object>) (Object o1, Object o2) -> {
+            Integer v1 = (Integer) o1;
+            Integer v2 = (Integer) o2;
+            return v2.compareTo(v1);
+        };
+        long startTime = System.nanoTime();
+        instance.sort(values, c);
+        System.out.println(System.nanoTime() - startTime);
+        Object[] sortedValues = initialValues;
+        Arrays.sort(sortedValues, c);
+        assertArrayEquals(values, sortedValues);
+    }
+
 }
