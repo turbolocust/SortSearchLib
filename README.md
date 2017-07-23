@@ -21,4 +21,4 @@ A library that offers various sorting and string-search algorithms, including:
 </ul>
 <br>
 <i>All sorting algorithms support the use of a comparator.<br>
-This library requires at least Java 7 (Java 1.7).</i>
+This library requires at least Java 6 (Java 1.6).</i>
