@@ -30,9 +30,9 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * Offers the Rabin-Karp algorithm for finding multiple {@code String} values in
- * a specified text. This algorithm is also known as Rabin-Karp-Set, as it makes
- * use of a {@code Set} that contains patterns as {@code CharSequence}.
+ * Offers the Rabin-Karp algorithm for finding multiple patterns in a specified
+ * text. This algorithm is also known as Rabin-Karp-Set, as it makes use of a
+ * {@code Set} which consists of hashes of the patterns.
  *
  * @author Matthias Fussenegger
  */

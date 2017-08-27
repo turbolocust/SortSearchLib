@@ -23,26 +23,29 @@
  */
 package org.sort_search_lib.java.search.api;
 
+import java.util.List;
+
 /**
- * Implementing classes offer the functionality of finding the first occurrence
- * of a {@link String} value (pattern) in the specified text.
+ * Implementing classes offer the functionality of finding the occurrence(s) of
+ * a specified pattern in a specified text.
  *
  * @author Matthias Fussenegger
  */
 public interface SingleStringSearch {
 
     /**
-     * Indicates that the specified pattern has not been found.
+     * Indicates that a specified pattern has not been found.
      */
     int NOT_FOUND = -1;
 
     /**
-     * Finds the first occurrence of the pattern in the specified {@code text}.
+     * Finds the first occurrence of the specified pattern in the specified
+     * text.
      *
-     * @param text the text to be searched for pattern.
-     * @param pattern the pattern to be found in the text.
+     * @param text the text to search for the pattern.
+     * @param pattern the pattern to be searched for in the text.
      * @return the zero-based position of the first occurrence in the text or a
-     * negative {@link Integer} if the pattern is not a substring of the text.
+     * negative value if the pattern is not a substring of the text.
      */
     int indexOf(char[] text, CharSequence pattern);
 

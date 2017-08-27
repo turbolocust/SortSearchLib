@@ -27,8 +27,8 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * Implementing classes offer the functionality of finding multiple
- * {@link String} values in a specified text.
+ * Implementing classes offer the functionality of finding multiple patterns in
+ * a specified text.
  *
  * @author Matthias Fussenegger
  */

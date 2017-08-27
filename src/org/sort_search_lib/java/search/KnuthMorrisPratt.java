@@ -27,7 +27,7 @@ import org.sort_search_lib.java.search.api.SingleStringSearch;
 
 /**
  * Offers the Knuth-Morris-Pratt algorithm for finding the first occurrence of a
- * {@link String} value (pattern) in the specified text.
+ * specified pattern in the specified text.
  *
  * @author Matthias Fussenegger
  */
@@ -36,13 +36,10 @@ public class KnuthMorrisPratt implements SingleStringSearch {
     @Override
     public int indexOf(char[] text, CharSequence pattern) {
         if (text.length < 1 || pattern.length() < 1) {
-            return 0;
+            return NOT_FOUND;
         }
-
         int[] prefixTable = makePrefixTable(pattern);
-        int i = search(text, pattern, prefixTable);
-
-        return i;
+        return search(text, pattern, prefixTable);
     }
 
     /**
@@ -75,8 +72,8 @@ public class KnuthMorrisPratt implements SingleStringSearch {
      * @return the position of the first occurrence in the text.
      */
     private int search(char[] text, CharSequence pattern, int[] prefixTable) {
-        int i = 0; //position in text
-        int j = 0; //position in pattern
+        int i = 0; // position in text
+        int j = 0; // position in pattern
 
         while (j < pattern.length() && i < text.length) {
             if (j == -1 || text[i] == pattern.charAt(j)) {

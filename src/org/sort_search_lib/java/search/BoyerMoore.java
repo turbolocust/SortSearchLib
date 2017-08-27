@@ -27,20 +27,22 @@ import org.sort_search_lib.java.search.api.SingleStringSearch;
 
 /**
  * Offers the Boyer-Moore algorithm for finding the first occurrence of a
- * {@link String} value (pattern) in the specified text. This implementation
- * makes use of both, the bad-suffix and the good-suffix rule.
+ * specified pattern in the specified text. This implementation makes use of
+ * both, the bad-suffix and the good-suffix rule.
  *
  * @author Matthias Fussenegger
  */
 public class BoyerMoore implements SingleStringSearch {
+
+    private static final int ALPHABET = 1 << 8; // ASCII
 
     @Override
     public int indexOf(char[] text, CharSequence pattern) {
         if (text.length < 1 || pattern.length() < 1) {
             return 0;
         }
-        int skipTable[] = makeSkipTable(pattern);
-        int nextTable[] = makeNextTable(pattern);
+        int[] skipTable = makeSkipTable(pattern);
+        int[] nextTable = makeNextTable(pattern);
         int i = pattern.length() - 1, j;
         while (i < text.length) {
             for (j = pattern.length() - 1; pattern.charAt(j) == text[i]; --i, --j) {
@@ -60,7 +62,6 @@ public class BoyerMoore implements SingleStringSearch {
      * @return an array representing the skip table.
      */
     private int[] makeSkipTable(CharSequence pattern) {
-        final int ALPHABET = 256; //ASCII
         int[] table = new int[ALPHABET];
         for (int i = 0; i < table.length; ++i) {
             table[i] = pattern.length();
@@ -115,7 +116,7 @@ public class BoyerMoore implements SingleStringSearch {
         int len = 0;
         for (int i = pos, j = pattern.length() - 1;
                 i >= 0 && pattern.charAt(i) == pattern.charAt(j); --i, --j) {
-            len += 1;
+            ++len;
         }
         return len;
     }
