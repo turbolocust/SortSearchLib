@@ -39,7 +39,7 @@ public class BoyerMoore implements SingleStringSearch {
     @Override
     public int indexOf(char[] text, CharSequence pattern) {
         if (text.length < 1 || pattern.length() < 1) {
-            return 0;
+            return NOT_FOUND;
         }
         int[] skipTable = makeSkipTable(pattern);
         int[] nextTable = makeNextTable(pattern);

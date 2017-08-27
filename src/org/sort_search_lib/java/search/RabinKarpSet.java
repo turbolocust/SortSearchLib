@@ -81,9 +81,9 @@ public final class RabinKarpSet extends RabinKarp implements MultiStringSearch {
     }
 
     /**
-     * Pre-computes a hash value of the specified {@code pattern}.
+     * Pre-computes a hash value of the specified pattern.
      *
-     * @param pattern the pattern of which a hash will be computed.
+     * @param pattern the pattern of which to compute a hash value.
      * @return the computed hash value of the pattern.
      */
     private long hash(CharSequence pattern) {
