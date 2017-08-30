@@ -38,12 +38,15 @@ public final class BubbleSort implements InPlaceSort {
     @SuppressWarnings("unchecked")
     public <T> void sort(T[] values) {
         if (values != null && values.length > 1) {
-            for (int n = values.length; n > 1; --n) {
+            boolean isDone = false;
+            for (int n = values.length; n > 1 && !isDone; --n) {
+                isDone = true;
                 for (int j = 0; j < n - 1; ++j) {
                     if (((Comparable<? super T>) values[j]).compareTo(values[j + 1]) > 0) {
                         T temp = values[j];
                         values[j] = values[j + 1];
                         values[j + 1] = temp;
+                        isDone = false;
                     }
                 }
             }
@@ -53,12 +56,15 @@ public final class BubbleSort implements InPlaceSort {
     @Override
     public <T> void sort(T[] values, Comparator<? super T> c) {
         if (values != null && values.length > 1) {
-            for (int n = values.length; n > 1; --n) {
+            boolean isDone = false;
+            for (int n = values.length; n > 1 && !isDone; --n) {
+                isDone = true;
                 for (int j = 0; j < n - 1; ++j) {
                     if (c.compare(values[j], values[j + 1]) > 0) {
                         T temp = values[j];
                         values[j] = values[j + 1];
                         values[j + 1] = temp;
+                        isDone = false;
                     }
                 }
             }
