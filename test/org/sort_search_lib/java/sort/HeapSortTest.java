@@ -64,7 +64,7 @@ public class HeapSortTest implements TestableSort {
     @Test
     @Override
     public void testSort() {
-        System.out.println("sort - HEAP SORT");
+        System.out.println("sort - HeapSort");
         HeapSort instance = new HeapSort();
         Object[] values = VALUES.toArray();
         long startTime = System.nanoTime();

@@ -64,7 +64,7 @@ public class ShellSortTest implements TestableSort {
     @Test
     @Override
     public void testSort() {
-        System.out.println("sort - SHELL SORT");
+        System.out.println("sort - ShellSort");
         ShellSort instance = new ShellSort();
         Object[] values = VALUES.toArray();
         long startTime = System.nanoTime();

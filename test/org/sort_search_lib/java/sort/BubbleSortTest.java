@@ -60,7 +60,7 @@ public class BubbleSortTest implements TestableSort {
     @Test
     @Override
     public void testSort() {
-        System.out.println("sort - BUBBLE SORT");
+        System.out.println("sort - BubbleSort");
         BubbleSort instance = new BubbleSort();
         Object[] values = VALUES.toArray();
         long startTime = System.nanoTime();

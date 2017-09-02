@@ -61,7 +61,7 @@ public class MergeSortTest implements TestableSort {
     @Test
     @Override
     public void testSort() {
-        System.out.println("sort - MERGE SORT");
+        System.out.println("sort - MergeSort");
         MergeSort instance = new MergeSort();
         long startTime = System.nanoTime();
         List<Integer> result = instance.sort(VALUES);

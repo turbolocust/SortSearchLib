@@ -60,7 +60,7 @@ public class SelectionSortTest implements TestableSort {
     @Test
     @Override
     public void testSort() {
-        System.out.println("sort - SELECTION SORT");
+        System.out.println("sort - SelectionSort");
         SelectionSort instance = new SelectionSort();
         Object[] values = VALUES.toArray();
         long startTime = System.nanoTime();

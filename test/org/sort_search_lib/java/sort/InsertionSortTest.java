@@ -60,7 +60,7 @@ public class InsertionSortTest implements TestableSort {
     @Test
     @Override
     public void testSort() {
-        System.out.println("sort - INSERTION SORT");
+        System.out.println("sort - InsertionSort");
         InsertionSort instance = new InsertionSort();
         Object[] values = VALUES.toArray();
         long startTime = System.nanoTime();
