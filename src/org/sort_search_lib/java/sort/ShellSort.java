@@ -48,12 +48,12 @@ public final class ShellSort implements InPlaceSort {
                 /*do insertion sort*/
                 for (int i = gap; i < values.length; ++i) {
                     T temp = values[i];
-                    int insert = i;
-                    while (insert >= gap && ((Comparable<? super T>) values[insert - gap]).compareTo(temp) > 0) {
-                        values[insert] = values[insert - gap];
-                        insert -= gap;
+                    int j = i;
+                    while (j >= gap && ((Comparable<? super T>) values[j - gap]).compareTo(temp) > 0) {
+                        values[j] = values[j - gap];
+                        j -= gap;
                     }
-                    values[insert] = temp;
+                    values[j] = temp;
                 }
                 gap /= 3;
             }
@@ -73,12 +73,12 @@ public final class ShellSort implements InPlaceSort {
                 /*do insertion sort*/
                 for (int i = gap; i < values.length; ++i) {
                     T temp = values[i];
-                    int insert = i;
-                    while (insert >= gap && c.compare(values[insert - gap], temp) > 0) {
-                        values[insert] = values[insert - gap];
-                        insert -= gap;
+                    int j = i;
+                    while (j >= gap && c.compare(values[j - gap], temp) > 0) {
+                        values[j] = values[j - gap];
+                        j -= gap;
                     }
-                    values[insert] = temp;
+                    values[j] = temp;
                 }
                 gap /= 3;
             }
