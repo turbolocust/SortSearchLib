@@ -189,14 +189,6 @@ public final class Quicksort implements InPlaceSort {
         return i; // return position of pivot
     }
 
-    /**
-     * Swaps two elements of the specified array
-     *
-     * @param <T> type of the array elements.
-     * @param values the array of which to swap elements
-     * @param i the index of the first element that will be swapped
-     * @param j the index of the second element that will be swapped
-     */
     private <T> void swap(T[] values, int i, int j) {
         T temp = values[j];
         values[j] = values[i];
