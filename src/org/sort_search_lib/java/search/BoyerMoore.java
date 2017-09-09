@@ -34,15 +34,34 @@ import org.sort_search_lib.java.search.api.SingleStringSearch;
  */
 public class BoyerMoore implements SingleStringSearch {
 
-    private static final int ALPHABET = 1 << 8; // ASCII
+    /**
+     * Alphabet size to be used by algorithm.
+     */
+    private final int _alphabet;
+
+    /**
+     * Constructs a new instance with default alphabet size of 65536.
+     */
+    public BoyerMoore() {
+        _alphabet = Character.MAX_VALUE + 1;
+    }
+
+    /**
+     * Constructs a new instance with the specified alphabet size.
+     *
+     * @param alphabetSize the alphabet size to be used.
+     */
+    public BoyerMoore(int alphabetSize) {
+        _alphabet = alphabetSize;
+    }
 
     @Override
     public int indexOf(char[] text, CharSequence pattern) {
         if (text.length < 1 || pattern.length() < 1) {
             return NOT_FOUND;
         }
-        int[] skipTable = makeSkipTable(pattern);
-        int[] nextTable = makeNextTable(pattern);
+        final int[] skipTable = makeSkipTable(pattern);
+        final int[] nextTable = makeNextTable(pattern);
         int i = pattern.length() - 1, j;
         while (i < text.length) {
             for (j = pattern.length() - 1; pattern.charAt(j) == text[i]; --i, --j) {
@@ -62,7 +81,7 @@ public class BoyerMoore implements SingleStringSearch {
      * @return an array representing the skip table.
      */
     private int[] makeSkipTable(CharSequence pattern) {
-        int[] table = new int[ALPHABET];
+        int[] table = new int[_alphabet];
         for (int i = 0; i < table.length; ++i) {
             table[i] = pattern.length();
         }
@@ -78,23 +97,24 @@ public class BoyerMoore implements SingleStringSearch {
      * @param pattern the pattern that is required for table creation.
      * @return an array representing the next table.
      */
-    private int[] makeNextTable(CharSequence pattern) {
+    private static int[] makeNextTable(CharSequence pattern) {
         int[] table = new int[pattern.length()];
         int lastPrefixPos = pattern.length();
         boolean isPrefix = true;
         /*iterate starting from end*/
-        for (int i = pattern.length() - 1; i >= 0; --i) {
+        for (int i = pattern.length(); i > 0; --i) {
             /*check if pattern from j to length is prefix*/
-            for (int j = i + 1, k = 0; j < pattern.length(); ++j, ++k) {
+            for (int j = i, k = 0; j < pattern.length(); ++j, ++k) {
                 if (pattern.charAt(j) != pattern.charAt(k)) {
                     isPrefix = false;
                     break;
                 }
             }
             if (isPrefix) {
-                lastPrefixPos = i + 1;
+                lastPrefixPos = i;
             }
-            table[pattern.length() - 1 - i] = lastPrefixPos - i + pattern.length() - 1;
+            table[pattern.length() - i] = lastPrefixPos - i + pattern.length();
+            isPrefix = true;
         }
         /*iterate starting from beginning*/
         for (int i = 0; i < pattern.length() - 1; ++i) {
@@ -112,7 +132,7 @@ public class BoyerMoore implements SingleStringSearch {
      * @param pos the current position in the pattern.
      * @return the length of the suffix.
      */
-    private int suffixLength(CharSequence pattern, int pos) {
+    private static int suffixLength(CharSequence pattern, int pos) {
         int len = 0;
         for (int i = pos, j = pattern.length() - 1;
                 i >= 0 && pattern.charAt(i) == pattern.charAt(j); --i, --j) {
