@@ -26,6 +26,7 @@ package org.sort_search_lib.java.sort;
 import org.sort_search_lib.java.sort.api.OutPlaceSort;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -43,8 +44,8 @@ public final class MergeSort implements OutPlaceSort {
         }
 
         /*sublists consisting of the even and odd-indexed elements*/
-        List<T> left = new ArrayList<T>();
-        List<T> right = new ArrayList<T>();
+        List<T> left = new LinkedList<T>();
+        List<T> right = new LinkedList<T>();
 
         /*divide list into equal-sized sublists*/
         for (int i = 0; i < list.size(); ++i) {
@@ -65,7 +66,8 @@ public final class MergeSort implements OutPlaceSort {
 
     @SuppressWarnings("unchecked")
     private <T> List<T> mergeComparable(List<T> left, List<T> right) {
-        List<T> result = new ArrayList<T>();
+        
+        List<T> result = new ArrayList<T>(left.size() + right.size());
 
         while (!left.isEmpty() && !right.isEmpty()) {
             if (((Comparable<? super T>) left.get(0)).compareTo(right.get(0)) > 0) {
@@ -92,8 +94,8 @@ public final class MergeSort implements OutPlaceSort {
         }
 
         /*sublists consisting of the even and odd-indexed elements*/
-        List<T> left = new ArrayList<T>();
-        List<T> right = new ArrayList<T>();
+        List<T> left = new LinkedList<T>();
+        List<T> right = new LinkedList<T>();
 
         /*divide list into equal-sized sublists*/
         for (int i = 0; i < list.size(); ++i) {
@@ -113,7 +115,8 @@ public final class MergeSort implements OutPlaceSort {
     }
 
     private <T> List<T> mergeUsingComparator(List<T> left, List<T> right, Comparator<? super T> c) {
-        List<T> result = new ArrayList<T>();
+        
+        List<T> result = new ArrayList<T>(left.size() + right.size());
 
         while (!left.isEmpty() && !right.isEmpty()) {
             if (c.compare(left.get(0), right.get(0)) > 0) {
