@@ -39,14 +39,14 @@ public final class SelectionSort implements InPlaceSort {
     public <T> void sort(T[] values) {
         if (values != null && values.length > 1) {
             for (int i = values.length - 1; i > 0; --i) {
-                int min = 0;
+                int max = 0;
                 for (int j = 0; j < i + 1; ++j) {
-                    if (((Comparable<? super T>) values[j]).compareTo(values[min]) > 0) {
-                        min = j;
+                    if (((Comparable<? super T>) values[j]).compareTo(values[max]) > 0) {
+                        max = j;
                     }
                 }
-                T temp = values[min];
-                values[min] = values[i];
+                T temp = values[max];
+                values[max] = values[i];
                 values[i] = temp;
             }
         }
@@ -56,14 +56,14 @@ public final class SelectionSort implements InPlaceSort {
     public <T> void sort(T[] values, Comparator<? super T> c) {
         if (values != null && values.length > 1) {
             for (int i = values.length - 1; i > 0; --i) {
-                int min = 0;
+                int max = 0;
                 for (int j = 0; j < i + 1; ++j) {
-                    if (c.compare(values[j], values[min]) > 0) {
-                        min = j;
+                    if (c.compare(values[j], values[max]) > 0) {
+                        max = j;
                     }
                 }
-                T temp = values[min];
-                values[min] = values[i];
+                T temp = values[max];
+                values[max] = values[i];
                 values[i] = temp;
             }
         }
