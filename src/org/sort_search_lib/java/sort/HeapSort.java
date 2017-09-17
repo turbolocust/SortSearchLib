@@ -34,17 +34,62 @@ import org.sort_search_lib.java.sort.api.InPlaceSort;
  */
 public final class HeapSort implements InPlaceSort {
 
+    /**
+     * Internal API that respects a specific range within the specified array.
+     *
+     * @param <T> type of the array elements.
+     * @param values reference to the array that is to be sorted.
+     * @param left the left boundary in the array.
+     * @param right the right boundary in the array.
+     */
+    <T> void sort(T[] values, int left, int right) {
+        int n = right - left;
+        /*heapify while respecting bounds*/
+        for (int i = n / 2; i >= 0; --i) {
+            siftDownComparable(values, n, i, left);
+        }
+        /*sort-down while respecting bounds*/
+        while (n - 1 > 0) {
+            swap(values, left + n - 1, left);
+            siftDownComparable(values, n - 1, 0, left);
+            --n;
+        }
+    }
+
+    /**
+     * Internal API that respects a specific range within the specified array.
+     *
+     * @param <T> type of the array elements.
+     * @param values reference to the array that is to be sorted.
+     * @param left the left boundary in the array.
+     * @param right the right boundary in the array.
+     * @param c the {@link Comparator} used to compare the elements.
+     */
+    <T> void sort(T[] values, int left, int right, Comparator<? super T> c) {
+        int n = right - left;
+        /*heapify while respecting bounds*/
+        for (int i = n / 2; i >= 0; --i) {
+            siftDownUsingComparator(values, n, i, left, c);
+        }
+        /*sort-down while respecting bounds*/
+        while (n - 1 > 0) {
+            swap(values, left + n - 1, left);
+            siftDownUsingComparator(values, n - 1, 0, left, c);
+            --n;
+        }
+    }
+
     @Override
     public <T> void sort(T[] values) {
         int n = values.length;
         /*heapify*/
         for (int i = n / 2; i >= 0; --i) {
-            siftDownComparable(values, n, i);
+            siftDownComparable(values, n, i, 0);
         }
         /*sort-down*/
         while (n - 1 > 0) {
             swap(values, n - 1, 0);
-            siftDownComparable(values, n - 1, 0);
+            siftDownComparable(values, n - 1, 0, 0);
             --n;
         }
     }
@@ -54,21 +99,24 @@ public final class HeapSort implements InPlaceSort {
      *
      * @param <T> type of the array elements.
      * @param values reference to the array that is to be sorted.
-     * @param end the size of {@code values}, which is the heap.
+     * @param end the upper bound to be considered.
      * @param parent the current index of the parent node.
+     * @param low lower bound to be added when accessing indexes.
      */
     @SuppressWarnings("unchecked")
-    private <T> void siftDownComparable(T[] values, int end, int parent) {
+    private <T> void siftDownComparable(T[] values, int end, int parent, int low) {
         int child = parent * 2 + 1;
         while (parent * 2 + 1 < end) {
             if (child + 1 < end) {
-                if (((Comparable<? super T>) values[child + 1]).compareTo(values[child]) > 0) {
+                if (((Comparable<? super T>) values[low + child + 1])
+                        .compareTo(values[low + child]) > 0) {
                     ++child; // right child is larger than left one
                 }
             }
             /*swawp if child is larger than its parent*/
-            if (((Comparable<? super T>) values[child]).compareTo(values[parent]) > 0) {
-                swap(values, child, parent);
+            if (((Comparable<? super T>) values[low + child])
+                    .compareTo(values[low + parent]) > 0) {
+                swap(values, low + child, low + parent);
                 parent = child;
                 child = 2 * parent + 1;
             } else {
@@ -82,36 +130,38 @@ public final class HeapSort implements InPlaceSort {
         int n = values.length;
         /*heapify*/
         for (int i = n / 2; i >= 0; --i) {
-            siftDownUsingComparator(values, n, i, c);
+            siftDownUsingComparator(values, n, i, 0, c);
         }
         /*sort-down*/
         while (n - 1 > 0) {
             swap(values, n - 1, 0);
-            siftDownUsingComparator(values, n - 1, 0, c);
+            siftDownUsingComparator(values, n - 1, 0, 0, c);
             --n;
         }
     }
 
     /**
-     * Restores the heap condition by using the specified {@link Comparator}
+     * Restores the heap condition by using the specified {@link Comparator}.
      *
      * @param <T> type of the array elements.
-     * @param values reference to the array that is to be sorted
-     * @param end the size of {@code values}, which is the heap
-     * @param parent the current index of the parent node
-     * @param c the {@link Comparator} used to compare the elements
+     * @param values reference to the array that is to be sorted.
+     * @param end the upper bound to be considered.
+     * @param parent the current index of the parent node.
+     * @param low lower bound to be added when accessing indexes.
+     * @param c the {@link Comparator} used to compare the elements.
      */
-    private <T> void siftDownUsingComparator(T[] values, int end, int parent, Comparator<? super T> c) {
+    private <T> void siftDownUsingComparator(T[] values, int end, int parent,
+            int low, Comparator<? super T> c) {
         int child = parent * 2 + 1;
         while (parent * 2 + 1 < end) {
             if (child + 1 < end) {
-                if (c.compare(values[child + 1], values[child]) > 0) {
+                if (c.compare(values[low + child + 1], values[low + child]) > 0) {
                     ++child; // right child is larger than left one
                 }
             }
             /*swawp if child is larger than its parent*/
-            if (c.compare(values[child], values[parent]) > 0) {
-                swap(values, child, parent);
+            if (c.compare(values[low + child], values[low + parent]) > 0) {
+                swap(values, low + child, low + parent);
                 parent = child;
                 child = 2 * parent + 1;
             } else {
@@ -121,12 +171,12 @@ public final class HeapSort implements InPlaceSort {
     }
 
     /**
-     * Swaps two elements of the specified array
+     * Swaps two elements of the specified array.
      *
      * @param <T> type of the array elements.
-     * @param values the array of which to swap elements
-     * @param i the index of the first element that will be swapped
-     * @param j the index of the second element that will be swapped
+     * @param values the array of which to swap elements.
+     * @param i the index of the first element that will be swapped.
+     * @param j the index of the second element that will be swapped.
      */
     private <T> void swap(T[] values, int i, int j) {
         T temp = values[j];
