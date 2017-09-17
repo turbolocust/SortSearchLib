@@ -63,9 +63,9 @@ public final class Quicksort implements InPlaceSort {
     private <T> boolean insertionSortTinyArray(T[] values, Comparator<? super T> c) {
         if (values.length < 27) {
             if (c != null) {
-                new InsertionSort().sort(values, c);
+                InsertionSort.sort(values, 0, values.length - 1, c);
             } else {
-                new InsertionSort().sort(values);
+                InsertionSort.sort(values, 0, values.length - 1);
             }
             return true;
         }
@@ -117,7 +117,7 @@ public final class Quicksort implements InPlaceSort {
      * @param values the array to be sorted.
      * @return the new position of the pivot element.
      */
-    private <T> int divideUsingComparator(int left, int right, Comparator<? super T> c, T[] values) {
+    <T> int divideUsingComparator(int left, int right, Comparator<? super T> c, T[] values) {
         int i = left;
         int j = right - 1; // element to the left of pivot
         T pivot = values[right];
@@ -157,7 +157,7 @@ public final class Quicksort implements InPlaceSort {
      * @return the new position of the pivot element.
      */
     @SuppressWarnings("unchecked")
-    private <T> int divideComparable(int left, int right, T[] values) {
+    <T> int divideComparable(int left, int right, T[] values) {
         int i = left;
         int j = right - 1; // element to the left of pivot
         T pivot = values[right];
@@ -189,7 +189,7 @@ public final class Quicksort implements InPlaceSort {
         return i; // return position of pivot
     }
 
-    private <T> void swap(T[] values, int i, int j) {
+    private static <T> void swap(T[] values, int i, int j) {
         T temp = values[j];
         values[j] = values[i];
         values[i] = temp;

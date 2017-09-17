@@ -34,6 +34,50 @@ import org.sort_search_lib.java.sort.api.InPlaceSort;
  */
 public final class InsertionSort implements InPlaceSort {
 
+    /**
+     * Internal API that respects a specific range within the specified array.
+     * Both boundaries are considered inclusively.
+     *
+     * @param <T> type of the array elements.
+     * @param values reference to the array that is to be sorted.
+     * @param left the left boundary in the array.
+     * @param right the right boundary in the array.
+     */
+    @SuppressWarnings("unchecked")
+    static <T> void sort(T[] values, int left, int right) {
+        for (int i = left + 1; i <= right; ++i) {
+            T temp = values[i];
+            int j = i;
+            while (j > left && ((Comparable<? super T>) values[j - 1]).compareTo(temp) > 0) {
+                values[j] = values[j - 1];
+                --j;
+            }
+            values[j] = temp;
+        }
+    }
+
+    /**
+     * Internal API that respects a specific range within the specified array.
+     * Both boundaries are considered inclusively.
+     *
+     * @param <T> type of the array elements.
+     * @param values reference to the array that is to be sorted.
+     * @param left the left boundary in the array.
+     * @param right the right boundary in the array.
+     * @param c the {@link Comparator} used to compare the elements.
+     */
+    static <T> void sort(T[] values, int left, int right, Comparator<? super T> c) {
+        for (int i = left + 1; i <= right; ++i) {
+            T temp = values[i];
+            int j = i;
+            while (j > left && c.compare(values[j - 1], temp) > 0) {
+                values[j] = values[j - 1];
+                --j;
+            }
+            values[j] = temp;
+        }
+    }
+
     @Override
     @SuppressWarnings("unchecked")
     public <T> void sort(T[] values) {

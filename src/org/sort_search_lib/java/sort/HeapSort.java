@@ -36,6 +36,7 @@ public final class HeapSort implements InPlaceSort {
 
     /**
      * Internal API that respects a specific range within the specified array.
+     * Both boundaries are considered inclusively.
      *
      * @param <T> type of the array elements.
      * @param values reference to the array that is to be sorted.
@@ -58,6 +59,7 @@ public final class HeapSort implements InPlaceSort {
 
     /**
      * Internal API that respects a specific range within the specified array.
+     * Both boundaries are considered inclusively.
      *
      * @param <T> type of the array elements.
      * @param values reference to the array that is to be sorted.
@@ -178,7 +180,7 @@ public final class HeapSort implements InPlaceSort {
      * @param i the index of the first element that will be swapped.
      * @param j the index of the second element that will be swapped.
      */
-    private <T> void swap(T[] values, int i, int j) {
+    private static <T> void swap(T[] values, int i, int j) {
         T temp = values[j];
         values[j] = values[i];
         values[i] = temp;

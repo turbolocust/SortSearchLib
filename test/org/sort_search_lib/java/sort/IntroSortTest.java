@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2017 Matthias Fussenegger
+ * Copyright 2017 Matthias Fussenegger.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -27,7 +27,7 @@ import java.util.Arrays;
 import java.util.Comparator;
 import org.junit.After;
 import org.junit.AfterClass;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertArrayEquals;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -36,7 +36,7 @@ import org.junit.Test;
  *
  * @author Matthias Fussenegger
  */
-public class QuicksortTest implements TestableSort {
+public class IntroSortTest implements TestableSort {
 
     @BeforeClass
     public static void setUpClass() {
@@ -55,13 +55,13 @@ public class QuicksortTest implements TestableSort {
     }
 
     /**
-     * Test of sort method, of class Quicksort.
+     * Test of sort method, of class IntroSort.
      */
     @Test
     @Override
     public void testSort() {
-        System.out.println("sort - Quicksort");
-        Quicksort instance = new Quicksort();
+        System.out.println("sort - IntroSort");
+        IntroSort instance = new IntroSort();
         Object[] values = VALUES.toArray();
         long startTime = System.nanoTime();
         instance.sort(values);
@@ -72,13 +72,13 @@ public class QuicksortTest implements TestableSort {
     }
 
     /**
-     * Test of sort method, of class Quicksort.
+     * Test of sort method, of class IntroSort.
      */
     @Test
     @Override
     public void testSort_Comparator() {
-        System.out.println("sort using comparator - Quicksort");
-        Quicksort instance = new Quicksort();
+        System.out.println("sort using comparator - IntroSort");
+        IntroSort instance = new IntroSort();
         Integer[] values = new Integer[VALUES.size()];
         values = VALUES.toArray(values);
         Comparator<Integer> c = TestableSortUtils.createIntegerComparator();
@@ -90,46 +90,4 @@ public class QuicksortTest implements TestableSort {
         Arrays.sort(sortedValues, c);
         assertArrayEquals(values, sortedValues);
     }
-
-    /**
-     * Test of sort method, of class Quicksort with tiny array.
-     */
-    @Test
-    public void testSort_TinyArray() {
-        System.out.println("sort - Quicksort - Tiny Array");
-        Quicksort instance = new Quicksort();
-        int sortSizeInsertion = 26;
-        Integer[] initialValues = new Integer[sortSizeInsertion];
-        initialValues = TestableSortUtils.generateRandomIntegerList(
-                sortSizeInsertion).toArray(initialValues);
-        Integer[] values = Arrays.copyOf(initialValues, sortSizeInsertion);
-        long startTime = System.nanoTime();
-        instance.sort(values);
-        System.out.println(System.nanoTime() - startTime);
-        Integer[] sortedValues = initialValues;
-        Arrays.sort(sortedValues);
-        assertArrayEquals(values, sortedValues);
-    }
-
-    /**
-     * Test of sort method, of class Quicksort with tiny array.
-     */
-    @Test
-    public void testSort_Comparator_TinyArray() {
-        System.out.println("sort using comparator - Quicksort - Tiny Array");
-        Quicksort instance = new Quicksort();
-        int sortSizeInsertion = 26;
-        Integer[] initialValues = new Integer[sortSizeInsertion];
-        initialValues = TestableSortUtils.generateRandomIntegerList(
-                sortSizeInsertion).toArray(initialValues);
-        Integer[] values = Arrays.copyOf(initialValues, sortSizeInsertion);
-        Comparator<Integer> c = TestableSortUtils.createIntegerComparator();
-        long startTime = System.nanoTime();
-        instance.sort(values, c);
-        System.out.println(System.nanoTime() - startTime);
-        Integer[] sortedValues = initialValues;
-        Arrays.sort(sortedValues, c);
-        assertArrayEquals(values, sortedValues);
-    }
-
 }
