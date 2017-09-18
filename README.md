@@ -1,18 +1,18 @@
 # SortSearchLib
-A library that offers various sorting and string-search algorithms, including:
+A library (for educational purposes) that offers various sorting and string-search algorithms, including:
 <br>
 <p><b>Sorting algorithms:</b></p>
 <ul>
   <li>Quicksort (single pivot)</li>
   <li>Dual-Pivot Quicksort</li>
+  <li>Introsort</li>
+  <li>Heap Sort</li>
+  <li>Shell Sort (using Knuth Sequence)</li>
+  <li>Merge Sort (Out Place)</li>
   <li>Bubble Sort</li>
   <li>Cocktail Shaker Sort</li>
   <li>Insertion Sort</li>
   <li>Selection Sort</li>
-  <li>Heap Sort</li>
-  <li>Introsort</li>
-  <li>Shell Sort (using Knuth Sequence)</li>
-  <li>Merge Sort (Out Place)</li>
 </ul>
 <p><b>String-search algorithms:</b></p>
 <ul>
