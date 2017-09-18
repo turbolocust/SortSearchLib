@@ -23,8 +23,6 @@
  */
 package org.sort_search_lib.java.search.api;
 
-import java.util.List;
-
 /**
  * Implementing classes offer the functionality of finding the occurrence(s) of
  * a specified pattern in a specified text.

@@ -35,11 +35,6 @@ import org.sort_search_lib.java.sort.api.InPlaceSort;
 public final class IntroSort implements InPlaceSort {
 
     /**
-     * Threshold at which insertion sort is applied.
-     */
-    private static final int SIZE_THRESHOLD = 27;
-
-    /**
      * Heap sort instance used to sort if depth is zero.
      */
     private final HeapSort _heapSort = new HeapSort();
@@ -66,27 +61,31 @@ public final class IntroSort implements InPlaceSort {
     }
 
     private <T> void introsortComparable(T[] values, int left, int right, int maxDepth) {
-        if (maxDepth == 0) {
-            _heapSort.sort(values, left, right);
-        } else if (right - left <= SIZE_THRESHOLD) {
-            InsertionSort.sort(values, left, right);
-        } else {
-            int pivot = _quicksort.divideComparable(left, right, values);
-            introsortComparable(values, left, pivot, maxDepth - 1);
-            introsortComparable(values, pivot + 1, right, maxDepth - 1);
+        if (left < right) {
+            if (maxDepth == 0) {
+                _heapSort.sort(values, left, right);
+            } else if (right - left < SIZE_THRESHOLD) {
+                InsertionSort.sort(values, left, right);
+            } else {
+                int pivot = _quicksort.divideComparable(left, right, values);
+                introsortComparable(values, left, pivot - 1, maxDepth - 1);
+                introsortComparable(values, pivot + 1, right, maxDepth - 1);
+            }
         }
     }
 
     private <T> void introsortUsingComparator(T[] values, int left, int right,
             int maxDepth, Comparator<? super T> c) {
-        if (maxDepth == 0) {
-            _heapSort.sort(values, left, right, c);
-        } else if (right - left <= SIZE_THRESHOLD) {
-            InsertionSort.sort(values, left, right, c);
-        } else {
-            int pivot = _quicksort.divideUsingComparator(left, right, c, values);
-            introsortUsingComparator(values, left, pivot, maxDepth - 1, c);
-            introsortUsingComparator(values, pivot + 1, right, maxDepth - 1, c);
+        if (left < right) {
+            if (maxDepth == 0) {
+                _heapSort.sort(values, left, right, c);
+            } else if (right - left < SIZE_THRESHOLD) {
+                InsertionSort.sort(values, left, right, c);
+            } else {
+                int pivot = _quicksort.divideUsingComparator(left, right, c, values);
+                introsortUsingComparator(values, left, pivot - 1, maxDepth - 1, c);
+                introsortUsingComparator(values, pivot + 1, right, maxDepth - 1, c);
+            }
         }
     }
 

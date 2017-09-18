@@ -36,6 +36,11 @@ import java.util.Comparator;
 public interface InPlaceSort {
 
     /**
+     * Threshold at which alternative sorting strategies may be applied.
+     */
+    int SIZE_THRESHOLD = 27;
+
+    /**
      * Sorts the specified array using the natural ordering of its elements in
      * ascending order.
      *
