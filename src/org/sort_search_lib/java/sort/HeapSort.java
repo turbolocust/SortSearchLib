@@ -68,8 +68,8 @@ public final class HeapSort implements InPlaceSort {
 
     /**
      * Sort by using the specified comparator and respecting a specific range
-     * within the specified array. See JavaDoc of {@link #sort(T[], int, int)}
-     * for a usage example.
+     * within the specified array. See JavaDoc of
+     * {@link #sort(Object[], int, int)} for a usage example.
      *
      * @param <T> type of the array elements.
      * @param values reference to the array that is to be sorted.
