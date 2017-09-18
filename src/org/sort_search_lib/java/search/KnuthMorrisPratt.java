@@ -34,8 +34,8 @@ import org.sort_search_lib.java.search.api.SingleStringSearch;
 public class KnuthMorrisPratt implements SingleStringSearch {
 
     @Override
-    public int indexOf(char[] text, CharSequence pattern) {
-        if (text.length < 1 || pattern.length() < 1) {
+    public int indexOf(String text, CharSequence pattern) {
+        if (text.length() < 1 || pattern.length() < 1) {
             return NOT_FOUND;
         }
         int[] prefixTable = makePrefixTable(pattern);
@@ -71,12 +71,12 @@ public class KnuthMorrisPratt implements SingleStringSearch {
      * @param prefixTable the previously generated prefix table.
      * @return the position of the first occurrence in the text.
      */
-    private static int search(char[] text, CharSequence pattern, int[] prefixTable) {
+    private static int search(String text, CharSequence pattern, int[] prefixTable) {
         int i = 0; // position in text
         int j = 0; // position in pattern
 
-        while (j < pattern.length() && i < text.length) {
-            if (j == -1 || text[i] == pattern.charAt(j)) {
+        while (j < pattern.length() && i < text.length()) {
+            if (j == -1 || text.charAt(i) == pattern.charAt(j)) {
                 ++i;
                 ++j;
             } else {

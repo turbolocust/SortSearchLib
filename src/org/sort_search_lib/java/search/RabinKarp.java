@@ -48,7 +48,23 @@ public class RabinKarp implements SingleStringSearch {
     /**
      * Radix value for text mapping, depends on alphabet.
      */
-    protected final int R = 256;
+    protected final int _radix;
+
+    /**
+     * Creates a new instance with a radix of 256.
+     */
+    public RabinKarp() {
+        _radix = 256;
+    }
+
+    /**
+     * Creates a new instance with the specified radix.
+     *
+     * @param radix the radix to be used.
+     */
+    public RabinKarp(int radix) {
+        _radix = radix;
+    }
 
     /**
      * Calculates a random 31-bit prime number.
@@ -61,9 +77,9 @@ public class RabinKarp implements SingleStringSearch {
     }
 
     @Override
-    public int indexOf(char[] text, CharSequence pattern) {
+    public int indexOf(String text, CharSequence pattern) {
         if (text == null || pattern == null
-                || text.length < 1 || pattern.length() < 1) {
+                || text.length() < 1 || pattern.length() < 1) {
             return NOT_FOUND;
         }
         long p = 0L; // decimal value of pattern
@@ -72,23 +88,24 @@ public class RabinKarp implements SingleStringSearch {
 
         /*pre-compute radix^(m-1) mod Q, where m is the pattern length*/
         for (int i = 1; i < pattern.length(); ++i) {
-            h = (R * h) % Q;
+            h = (_radix * h) % Q;
         }
 
         /*preprocessing*/
         for (int i = 0; i < pattern.length(); ++i) {
-            p = (R * p + pattern.charAt(i)) % Q;
-            t = (R * t + text[i]) % Q;
+            p = (_radix * p + pattern.charAt(i)) % Q;
+            t = (_radix * t + text.charAt(i)) % Q;
         }
 
         /*matching*/
-        for (int i = 0; i < text.length - pattern.length(); ++i) {
+        for (int i = 0; i < text.length() - pattern.length(); ++i) {
             if (p == t) { // match found
-                if (pattern.equals(String.valueOf(text, i, pattern.length()))) {
+                if (pattern.equals(text.substring(i, i + pattern.length()))) {
                     return i;
                 }
             }
-            t = ((R * (t - text[i] * h)) + text[i + pattern.length()]) % Q;
+            t = ((_radix * (t - text.charAt(i) * h))
+                    + text.charAt(i + pattern.length())) % Q;
             if (t < 0) { // convert t in case it is negative
                 t += Q;
             }

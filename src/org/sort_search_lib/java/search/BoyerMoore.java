@@ -56,20 +56,20 @@ public class BoyerMoore implements SingleStringSearch {
     }
 
     @Override
-    public int indexOf(char[] text, CharSequence pattern) {
-        if (text.length < 1 || pattern.length() < 1) {
+    public int indexOf(String text, CharSequence pattern) {
+        if (text.length() < 1 || pattern.length() < 1) {
             return NOT_FOUND;
         }
         final int[] skipTable = makeSkipTable(pattern);
         final int[] nextTable = makeNextTable(pattern);
         int i = pattern.length() - 1, j;
-        while (i < text.length) {
-            for (j = pattern.length() - 1; pattern.charAt(j) == text[i]; --i, --j) {
+        while (i < text.length()) {
+            for (j = pattern.length() - 1; pattern.charAt(j) == text.charAt(i); --i, --j) {
                 if (j == 0) {
                     return i;
                 }
             }
-            i += Math.max(nextTable[pattern.length() - 1 - j], skipTable[text[i]]);
+            i += Math.max(nextTable[pattern.length() - 1 - j], skipTable[text.charAt(i)]);
         }
         return NOT_FOUND;
     }

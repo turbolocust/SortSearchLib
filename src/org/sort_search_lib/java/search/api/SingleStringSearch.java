@@ -40,11 +40,11 @@ public interface SingleStringSearch {
      * Finds the first occurrence of the specified pattern in the specified
      * text.
      *
-     * @param text the text to search for the pattern.
+     * @param text the text to be searched for the pattern.
      * @param pattern the pattern to be searched for in the text.
      * @return the zero-based position of the first occurrence in the text or a
      * negative value if the pattern is not a substring of the text.
      */
-    int indexOf(char[] text, CharSequence pattern);
+    int indexOf(String text, CharSequence pattern);
 
 }
