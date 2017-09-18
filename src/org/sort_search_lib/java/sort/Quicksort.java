@@ -84,9 +84,13 @@ public final class Quicksort implements InPlaceSort {
      */
     private <T> void quicksortUsingComparator(int left, int right, Comparator<? super T> c, T[] values) {
         if (left < right) {
-            int div = divideUsingComparator(left, right, c, values);
-            quicksortUsingComparator(left, div - 1, c, values);
-            quicksortUsingComparator(div + 1, right, c, values);
+            if (right - left < SIZE_THRESHOLD) {
+                InsertionSort.sort(values, left, right, c);
+            } else {
+                int div = divideUsingComparator(left, right, c, values);
+                quicksortUsingComparator(left, div - 1, c, values);
+                quicksortUsingComparator(div + 1, right, c, values);
+            }
         }
     }
 
@@ -101,9 +105,13 @@ public final class Quicksort implements InPlaceSort {
      */
     private <T> void quicksortComparable(int left, int right, T[] values) {
         if (left < right) {
-            int div = divideComparable(left, right, values);
-            quicksortComparable(left, div - 1, values);
-            quicksortComparable(div + 1, right, values);
+            if (right - left < SIZE_THRESHOLD) {
+                InsertionSort.sort(values, left, right);
+            } else {
+                int div = divideComparable(left, right, values);
+                quicksortComparable(left, div - 1, values);
+                quicksortComparable(div + 1, right, values);
+            }
         }
     }
 

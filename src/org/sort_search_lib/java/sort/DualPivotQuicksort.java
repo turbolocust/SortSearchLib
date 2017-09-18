@@ -84,7 +84,11 @@ public class DualPivotQuicksort implements InPlaceSort {
      */
     private <T> void dualPivotQuicksortUsingComparator(int left, int right,
             Comparator<? super T> c, T[] values) {
-        if (right > left) {
+        if (left < right) {
+            if (right - left < SIZE_THRESHOLD) {
+                InsertionSort.sort(values, left, right, c);
+                return;
+            }
             // set and choose outermost elements as pivots
             if (c.compare(values[left], values[right]) > 0) {
                 swap(values, left, right);
@@ -139,7 +143,11 @@ public class DualPivotQuicksort implements InPlaceSort {
      */
     @SuppressWarnings("unchecked")
     private <T> void dualPivotQuicksortComparable(int left, int right, T[] values) {
-        if (right > left) {
+        if (left < right) {
+            if (right - left < SIZE_THRESHOLD) {
+                InsertionSort.sort(values, left, right);
+                return;
+            }
             // set and choose outermost elements as pivots
             if (((Comparable<? super T>) values[left]).compareTo(values[right]) > 0) {
                 swap(values, left, right);
