@@ -23,6 +23,7 @@
  */
 package org.sort_search_lib.java.search;
 
+import java.util.Collections;
 import org.sort_search_lib.java.search.api.MultiStringSearch;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -38,14 +39,31 @@ import java.util.Set;
  */
 public final class RabinKarpSet extends RabinKarp implements MultiStringSearch {
 
-    @Override
-    public List<Integer> indexOf(char[] text, Set<CharSequence> patterns, int patternLength) {
-        if (text == null || patterns == null
-                || text.length < 1 || text.length < patternLength) {
-            return null;
-        }
-        List<Integer> occurrences = new LinkedList<Integer>();
+    /**
+     * Creates a new instance with a radix of 256.
+     */
+    public RabinKarpSet() {
+        super();
+    }
 
+    /**
+     * Creates a new instance with the specified radix.
+     *
+     * @param radix the radix to be used.
+     */
+    public RabinKarpSet(int radix) {
+        super(radix);
+    }
+
+    @Override
+    public List<Occurrence> indexesOf(CharSequence text,
+            Set<CharSequence> patterns, final int patternLength) {
+        if (text == null || patterns == null
+                || text.length() < 1 || text.length() < patternLength) {
+            return Collections.emptyList();
+        }
+
+        List<Occurrence> occurrences = new LinkedList<Occurrence>();
         Set<Long> patternHashes = new HashSet<Long>();
         /*calculate hash for each pattern*/
         for (CharSequence pattern : patterns) {
@@ -57,22 +75,24 @@ public final class RabinKarpSet extends RabinKarp implements MultiStringSearch {
 
         /*pre-compute radix^(m-1) mod Q, where m is the pattern length*/
         for (int i = 1; i < patternLength; ++i) {
-            h = (R * h) % Q;
+            h = (_radix * h) % Q;
         }
 
         /*preprocessing*/
         for (int i = 0; i < patternLength; ++i) {
-            t = (R * t + text[i]) % Q;
+            t = (_radix * t + text.charAt(i)) % Q;
         }
 
         /*matching*/
-        for (int i = 0; i < text.length - patternLength; ++i) {
+        for (int i = 0; i < text.length() - patternLength; ++i) {
             if (patternHashes.contains(t)) { // match found
-                if (patterns.contains(String.valueOf(text, i, patternLength))) {
-                    occurrences.add(i);
+                CharSequence match = text.subSequence(i, i + patternLength);
+                if (patterns.contains(match)) {
+                    occurrences.add(new Occurrence(i, match));
                 }
             }
-            t = ((R * (t - text[i] * h)) + text[i + patternLength]) % Q;
+            t = ((_radix * (t - text.charAt(i) * h))
+                    + text.charAt(i + patternLength)) % Q;
             if (t < 0) { // convert t in case it is negative
                 t += Q;
             }
@@ -89,7 +109,7 @@ public final class RabinKarpSet extends RabinKarp implements MultiStringSearch {
     private long hash(CharSequence pattern) {
         long p = 0L;
         for (int i = 0; i < pattern.length(); ++i) {
-            p = (R * p + pattern.charAt(i)) % Q;
+            p = (_radix * p + pattern.charAt(i)) % Q;
         }
         return p;
     }

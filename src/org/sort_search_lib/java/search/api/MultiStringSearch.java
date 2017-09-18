@@ -46,10 +46,79 @@ public interface MultiStringSearch {
      * @param text the text to be searched for the patterns.
      * @param patterns {@link Set} of patterns to be searched for in the text.
      * @param patternLength the fixed length of each pattern.
-     * @return zero-based positions of pattern occurrences in the text or an
-     * empty list if no pattern is a substring of the text, meaning no match has
+     * @return zero-based occurrences of the pattern in the text or an empty
+     * list if no pattern is a substring of the text, meaning that no match has
      * been found.
      */
-    List<Integer> indexOf(char[] text, Set<CharSequence> patterns, int patternLength);
+    List<Occurrence> indexesOf(CharSequence text, Set<CharSequence> patterns, int patternLength);
 
+    /**
+     * Value class which holds the pattern and its found position in the text.
+     */
+    static class Occurrence {
+
+        /**
+         * Position where the mapped pattern was found in the text.
+         */
+        private final int _position;
+
+        /**
+         * The pattern that was found at the mapped position.
+         */
+        private final CharSequence _pattern;
+
+        public Occurrence(int position, CharSequence pattern) {
+            _position = position;
+            _pattern = pattern;
+        }
+
+        /**
+         * Returns the position where the mapped pattern was found in the text.
+         *
+         * @return the position of the found pattern in the text.
+         */
+        public int getPosition() {
+            return _position;
+        }
+
+        /**
+         * Returns the pattern that was found at the mapped position.
+         *
+         * @return the pattern that was found at the mapped position.
+         */
+        public CharSequence getPattern() {
+            return _pattern;
+        }
+
+        @Override
+        public int hashCode() {
+            int hash = 5;
+            hash = 97 * hash + this._position;
+            hash = 97 * hash + (this._pattern != null ? this._pattern.hashCode() : 0);
+            return hash;
+        }
+
+        @Override
+        public boolean equals(Object obj) {
+            if (this == obj) {
+                return true;
+            }
+            if (obj == null) {
+                return false;
+            }
+            if (getClass() != obj.getClass()) {
+                return false;
+            }
+            final Occurrence other = (Occurrence) obj;
+            if (this._position != other._position) {
+                return false;
+            }
+            return !(this._pattern != other._pattern && (this._pattern == null || !this._pattern.equals(other._pattern)));
+        }
+
+        @Override
+        public String toString() {
+            return "Occurrence{" + "_position=" + _position + ", _pattern=" + _pattern + '}';
+        }
+    }
 }
