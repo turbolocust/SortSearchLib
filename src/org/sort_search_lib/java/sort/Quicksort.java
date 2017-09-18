@@ -118,9 +118,10 @@ public final class Quicksort implements InPlaceSort {
      * @return the new position of the pivot element.
      */
     <T> int divideUsingComparator(int left, int right, Comparator<? super T> c, T[] values) {
-        int i = left;
-        int j = right - 1; // element to the left of pivot
-        T pivot = values[right];
+        int median = medianOfThreeUsingComparator(values, left, right, c);
+        int i = left, j = right - 1; // j is element to the left of pivot
+        swap(values, median, right); // swap median element to rightmost position
+        T pivot = values[right]; // pivot is element at rightmost position
 
         do {
             /*search element from the left, which is bigger than pivot*/
@@ -158,9 +159,10 @@ public final class Quicksort implements InPlaceSort {
      */
     @SuppressWarnings("unchecked")
     <T> int divideComparable(int left, int right, T[] values) {
-        int i = left;
-        int j = right - 1; // element to the left of pivot
-        T pivot = values[right];
+        int median = medianOfThreeComparable(values, left, right);
+        int i = left, j = right - 1; // j is element to the left of pivot
+        swap(values, median, right); // swap median element to rightmost position
+        T pivot = values[right]; // pivot is element at rightmost position
 
         do {
             /*search element from the left, which is bigger than pivot*/
@@ -187,6 +189,40 @@ public final class Quicksort implements InPlaceSort {
             values[right] = temp;
         }
         return i; // return position of pivot
+    }
+
+    @SuppressWarnings("unchecked")
+    private static <T> int medianOfThreeComparable(T[] values, int left, int right) {
+
+        int mid = (left + right) / 2;
+
+        if (((Comparable<? super T>) values[right]).compareTo(values[left]) < 0) {
+            swap(values, right, left);
+        }
+        if (((Comparable<? super T>) values[right]).compareTo(values[mid]) < 0) {
+            swap(values, right, mid);
+        }
+        if (((Comparable<? super T>) values[mid]).compareTo(values[left]) < 0) {
+            swap(values, mid, left);
+        }
+        return mid;
+    }
+
+    private static <T> int medianOfThreeUsingComparator(
+            T[] values, int left, int right, Comparator<? super T> c) {
+
+        int mid = (left + right) / 2;
+
+        if (c.compare(values[right], values[left]) < 0) {
+            swap(values, right, left);
+        }
+        if (c.compare(values[right], values[mid]) < 0) {
+            swap(values, right, mid);
+        }
+        if (c.compare(values[mid], values[left]) < 0) {
+            swap(values, mid, left);
+        }
+        return mid;
     }
 
     private static <T> void swap(T[] values, int i, int j) {
