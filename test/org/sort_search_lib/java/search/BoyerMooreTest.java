@@ -62,12 +62,10 @@ public class BoyerMooreTest implements TestableSearch {
     @Override
     public void testIndexOf() {
         System.out.println("indexOf - BoyerMoore");
-        char[] stack = TEXT.toCharArray();
-        String needle = "gubergren";
-        BoyerMoore instance = new BoyerMoore();
-        int expResult = TEXT.indexOf("gubergren");
+        BoyerMoore instance = new BoyerMoore(256);
+        int expResult = TEXT.indexOf(PATTERN);
         long startTime = System.nanoTime();
-        int result = instance.indexOf(stack, needle);
+        int result = instance.indexOf(TEXT, PATTERN);
         System.out.println(System.nanoTime() - startTime);
         assertEquals(expResult, result);
     }

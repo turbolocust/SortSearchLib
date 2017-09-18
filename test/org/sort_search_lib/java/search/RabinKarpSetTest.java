@@ -23,7 +23,9 @@
  */
 package org.sort_search_lib.java.search;
 
+import java.util.Collections;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 import org.junit.After;
@@ -32,6 +34,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.sort_search_lib.java.search.api.MultiStringSearch.Occurrence;
 
 /**
  *
@@ -65,45 +68,42 @@ public class RabinKarpSetTest implements TestableSearch {
     @Override
     public void testIndexOf() {
         System.out.println("indexOf - RabinKarpSet");
-        char[] stack = TEXT.toCharArray();
+        int numOfPatterns = 10, patternLength = 12;
         Set<CharSequence> patterns = new HashSet<CharSequence>();
-        patterns.add("sit");
-        patterns.add("con");
-        int patternLength = 3;
-        int[] expectedResult = new int[6];
-        /*used a small C-program to validate these results*/
-        expectedResult[0] = 18;
-        expectedResult[1] = 28;
-        expectedResult[2] = 286;
-        expectedResult[3] = 314;
-        expectedResult[4] = 324;
-        expectedResult[5] = 582;
+        // generate random patterns from randomly generated text
+        for (int i = 0; i < numOfPatterns; ++i) {
+            patterns.add(TestableSearchUtils
+                    .generateRandomPattern(TEXT, patternLength));
+        }
+        // get expected results (test against String method)
+        List<Integer> expectedResults = new LinkedList<Integer>();
+        for (CharSequence pattern : patterns) {
+            expectedResults.add(TEXT.indexOf(pattern.toString()));
+        }
+        Collections.sort(expectedResults);
         RabinKarpSet instance = new RabinKarpSet();
         long startTime = System.nanoTime();
-        int[] result = convertToArray(instance.indexOf(stack, patterns, patternLength));
+        List<Occurrence> result = instance.indexesOf(TEXT, patterns, patternLength);
         System.out.println(System.nanoTime() - startTime);
-        assertArrayEquals(expectedResult, result);
+        // evaluate result
+        int resultPos[] = new int[result.size()], i = -1;
+        for (Occurrence o : result) {
+            resultPos[++i] = o.getPosition();
+        }
+        assertArrayEquals(convertToArray(expectedResults), resultPos);
     }
 
-    /**
-     * Converts a {@link List} with {@link Integer} occurrences to an array with
-     * primitive data types. The array has the same length as the {@link List}.
-     *
-     * @param list the {@link List} to be converted.
-     * @return an array consisting of values of the {@link List}.
-     */
     private static int[] convertToArray(List<Integer> list) {
         if (list.size() > 0) {
             int[] occurrences = new int[list.size()];
             int i = 0;
-            /*copy each list entry to array*/
+            /*copy each list entry to the array*/
             for (Integer pos : list) {
                 occurrences[i] = pos;
                 ++i;
             }
             return occurrences;
-        } else {
-            return null;
         }
+        return new int[]{};
     }
 }

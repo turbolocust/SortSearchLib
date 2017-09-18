@@ -32,15 +32,12 @@ public interface TestableSearch {
     /**
      * Random string to be tested.
      */
-    String TEXT = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, "
-            + "sed diam nonumy eirmod tempor invidunt ut labore et dolore magna "
-            + "aliquyam erat, sed diam voluptua. At vero eos et accusam et justo "
-            + "duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata "
-            + "sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, "
-            + "consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut "
-            + "labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et "
-            + "accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no "
-            + "sea takimata sanctus est Lorem ipsum dolor sit amet.";
+    String TEXT = TestableSearchUtils.generateRandomString(1024);
+
+    /**
+     * Random pattern to be found in text.
+     */
+    String PATTERN = TestableSearchUtils.generateRandomPattern(TEXT, 24);
 
     void testIndexOf();
 

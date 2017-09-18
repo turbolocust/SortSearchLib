@@ -62,12 +62,10 @@ public class KnuthMorrisPrattTest implements TestableSearch {
     @Override
     public void testIndexOf() {
         System.out.println("indexOf - KnuthMorrisPratt");
-        char[] stack = TEXT.toCharArray();
-        String needle = "gubergren";
         KnuthMorrisPratt instance = new KnuthMorrisPratt();
-        int expResult = TEXT.indexOf("gubergren");
+        int expResult = TEXT.indexOf(PATTERN);
         long startTime = System.nanoTime();
-        int result = instance.indexOf(stack, needle);
+        int result = instance.indexOf(TEXT, PATTERN);
         System.out.println(System.nanoTime() - startTime);
         assertEquals(expResult, result);
     }
