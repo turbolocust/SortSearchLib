@@ -35,16 +35,25 @@ import org.sort_search_lib.java.sort.api.InPlaceSort;
 public final class HeapSort implements InPlaceSort {
 
     /**
-     * Internal API that respects a specific range within the specified array.
-     * Both boundaries are considered inclusively.
+     * Sort by respecting a specific range within the specified array.
+     *
+     * <blockquote>
+     * <pre>
+     * <b>Example:</b>
+     *      Integer values = { 5, 8, 3, 2, 4, 1, 6, 5, 8, 9, 7 };
+     *      HeapSort hs = new HeapSort();
+     *      hs.sort( values, 2, values.length - 1 );
+     *      <b>Result is: [ 5, 8, 1, 2, 3, 4, 5, 6, 7, 8, 9 ]</b>
+     * </pre>
+     * </blockquote>
      *
      * @param <T> type of the array elements.
      * @param values reference to the array that is to be sorted.
      * @param left the left boundary in the array.
      * @param right the right boundary in the array.
      */
-    <T> void sort(T[] values, int left, int right) {
-        int n = right - left;
+    public <T> void sort(T[] values, int left, int right) {
+        int n = (right + 1) - left;
         /*heapify while respecting bounds*/
         for (int i = n / 2; i >= 0; --i) {
             siftDownComparable(values, n, i, left);
@@ -58,8 +67,9 @@ public final class HeapSort implements InPlaceSort {
     }
 
     /**
-     * Internal API that respects a specific range within the specified array.
-     * Both boundaries are considered inclusively.
+     * Sort by using the specified comparator and respecting a specific range
+     * within the specified array. See JavaDoc of {@link #sort(T[], int, int)}
+     * for a usage example.
      *
      * @param <T> type of the array elements.
      * @param values reference to the array that is to be sorted.
@@ -67,8 +77,8 @@ public final class HeapSort implements InPlaceSort {
      * @param right the right boundary in the array.
      * @param c the {@link Comparator} used to compare the elements.
      */
-    <T> void sort(T[] values, int left, int right, Comparator<? super T> c) {
-        int n = right - left;
+    public <T> void sort(T[] values, int left, int right, Comparator<? super T> c) {
+        int n = (right + 1) - left;
         /*heapify while respecting bounds*/
         for (int i = n / 2; i >= 0; --i) {
             siftDownUsingComparator(values, n, i, left, c);
