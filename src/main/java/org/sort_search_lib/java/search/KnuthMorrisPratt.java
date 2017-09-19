@@ -85,8 +85,7 @@ public class KnuthMorrisPratt implements SingleStringSearch {
         }
         if (j == pattern.length()) {
             return (i - pattern.length());
-        } else {
-            return NOT_FOUND;
         }
+		return NOT_FOUND;
     }
 }

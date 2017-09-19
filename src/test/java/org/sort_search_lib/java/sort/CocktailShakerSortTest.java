@@ -23,21 +23,22 @@
  */
 package org.sort_search_lib.java.sort;
 
+import static org.junit.Assert.assertArrayEquals;
+
 import java.util.Arrays;
 import java.util.Comparator;
+
 import org.junit.After;
 import org.junit.AfterClass;
-import static org.junit.Assert.assertArrayEquals;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import static org.sort_search_lib.java.sort.TestableSort.VALUES;
 
 /**
  *
  * @author Matthias Fussenegger
  */
-public class DualPivotQuicksortTest implements TestableSort {
+public class CocktailShakerSortTest implements TestableSort {
 
     @BeforeClass
     public static void setUpClass() {
@@ -56,13 +57,13 @@ public class DualPivotQuicksortTest implements TestableSort {
     }
 
     /**
-     * Test of sort method, of class DualPivotQuicksort.
+     * Test of sort method, of class CocktailShakerSort.
      */
     @Test
     @Override
     public void testSort() {
-        System.out.println("sort - DualPivotQuicksort");
-        DualPivotQuicksort instance = new DualPivotQuicksort();
+        System.out.println("sort - CocktailShakerSort");
+        CocktailShakerSort instance = new CocktailShakerSort();
         Object[] values = VALUES.toArray();
         long startTime = System.nanoTime();
         instance.sort(values);
@@ -73,13 +74,13 @@ public class DualPivotQuicksortTest implements TestableSort {
     }
 
     /**
-     * Test of sort method, of class DualPivotQuicksort.
+     * Test of sort method, of class CocktailShakerSort.
      */
     @Test
     @Override
     public void testSort_Comparator() {
-        System.out.println("sort using comparator - DualPivotQuicksort");
-        DualPivotQuicksort instance = new DualPivotQuicksort();
+        System.out.println("sort using comparator - CocktailShakerSort");
+        CocktailShakerSort instance = new CocktailShakerSort();
         Integer[] values = new Integer[VALUES.size()];
         values = VALUES.toArray(values);
         Comparator<Integer> c = TestableSortUtils.createIntegerComparator();
@@ -92,44 +93,4 @@ public class DualPivotQuicksortTest implements TestableSort {
         assertArrayEquals(values, sortedValues);
     }
 
-    /**
-     * Test of sort method, of class DualPivotQuicksort with tiny array.
-     */
-    @Test
-    public void testSort_TinyArray() {
-        System.out.println("sort - DualPivotQuicksort - Tiny Array");
-        DualPivotQuicksort instance = new DualPivotQuicksort();
-        int sortSizeInsertion = 26;
-        Integer[] initialValues = new Integer[sortSizeInsertion];
-        initialValues = TestableSortUtils.generateRandomIntegerList(
-                sortSizeInsertion).toArray(initialValues);
-        Integer[] values = Arrays.copyOf(initialValues, sortSizeInsertion);
-        long startTime = System.nanoTime();
-        instance.sort(values);
-        System.out.println(System.nanoTime() - startTime);
-        Integer[] sortedValues = initialValues;
-        Arrays.sort(sortedValues);
-        assertArrayEquals(values, sortedValues);
-    }
-
-    /**
-     * Test of sort method, of class DualPivotQuicksort with tiny array.
-     */
-    @Test
-    public void testSort_Comparator_TinyArray() {
-        System.out.println("sort using comparator - DualPivotQuicksort - Tiny Array");
-        DualPivotQuicksort instance = new DualPivotQuicksort();
-        int sortSizeInsertion = 26;
-        Integer[] initialValues = new Integer[sortSizeInsertion];
-        initialValues = TestableSortUtils.generateRandomIntegerList(
-                sortSizeInsertion).toArray(initialValues);
-        Integer[] values = Arrays.copyOf(initialValues, sortSizeInsertion);
-        Comparator<Integer> c = TestableSortUtils.createIntegerComparator();
-        long startTime = System.nanoTime();
-        instance.sort(values, c);
-        System.out.println(System.nanoTime() - startTime);
-        Integer[] sortedValues = initialValues;
-        Arrays.sort(sortedValues, c);
-        assertArrayEquals(values, sortedValues);
-    }
 }

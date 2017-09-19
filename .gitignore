@@ -1,2 +1,7 @@
 /nbproject/private/
 /dist/
+/target/
+/bin/
+/.settings/
+/.project
+/.classpath

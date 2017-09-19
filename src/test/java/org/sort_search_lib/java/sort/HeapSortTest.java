@@ -23,23 +23,24 @@
  */
 package org.sort_search_lib.java.sort;
 
+import static org.junit.Assert.assertArrayEquals;
+
 import java.util.Arrays;
 import java.util.Comparator;
+
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import static org.junit.Assert.*;
-import static org.sort_search_lib.java.sort.TestableSort.VALUES;
 
 /**
  *
  * @author Matthias Fussenegger
  */
-public class ShellSortTest implements TestableSort {
+public class HeapSortTest implements TestableSort {
 
-    public ShellSortTest() {
+    public HeapSortTest() {
     }
 
     @BeforeClass
@@ -59,13 +60,13 @@ public class ShellSortTest implements TestableSort {
     }
 
     /**
-     * Test of sort method, of class ShellSort.
+     * Test of sort method, of class HeapSort.
      */
     @Test
     @Override
     public void testSort() {
-        System.out.println("sort - ShellSort");
-        ShellSort instance = new ShellSort();
+        System.out.println("sort - HeapSort");
+        HeapSort instance = new HeapSort();
         Object[] values = VALUES.toArray();
         long startTime = System.nanoTime();
         instance.sort(values);
@@ -76,13 +77,13 @@ public class ShellSortTest implements TestableSort {
     }
 
     /**
-     * Test of sort method, of class ShellSort.
+     * Test of sort method, of class HeapSort.
      */
     @Test
     @Override
     public void testSort_Comparator() {
-        System.out.println("sort using comparator - ShellSort");
-        ShellSort instance = new ShellSort();
+        System.out.println("sort using comparator - HeapSort");
+        HeapSort instance = new HeapSort();
         Integer[] values = new Integer[VALUES.size()];
         values = VALUES.toArray(values);
         Comparator<Integer> c = TestableSortUtils.createIntegerComparator();
