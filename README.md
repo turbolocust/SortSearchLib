@@ -1,7 +1,5 @@
 # SortSearchLib
 
-<a href="https://travis-ci.org/turbolocust/SortSearchLib"><img href src="https://travis-ci.org/turbolocust/SortSearchLib.svg?branch=master" alt="CI build passed"/></a>
-
 A library (for educational purposes) that offers various sorting and string-search algorithms, including:
 <br>
 <p><b>Sorting algorithms:</b></p>
